@@ -30,6 +30,14 @@ All copy comes from `content/site.ts`.
 
 "Experience the Evolution" (any `#evolution` link, and `/story`) opens the full-screen Evolution story on top of the homepage (`components/StoryLayer.tsx`); its ending shows the logo and the six services. The previous homepage is kept at `/preview/classic`. Design explorations live under `/preview`; the logo interludes under `/preview-logo`.
 
+## Our Work page (`/work`)
+
+One tab per service. Pictures and videos come straight from folders, with no code to edit:
+
+`public/work/apps/` · `websites/` · `agents/` · `automation/` · `systems/` · `marketing/`
+
+Drop images (`.jpg`, `.png`, `.webp`) or videos (`.mp4`, `.webm`) into a service's folder and they appear under that tab, in file-name order. The file name becomes the caption (`01-bloom-salon-website.jpg` → "Bloom salon website"). A video gets a cover picture from an image with the same name (`tour.mp4` + `tour.jpg`). Keep videos short and compressed (under ~20 MB). A tab with nothing in it shows "Projects coming soon." The page text is in `content/work.ts`.
+
 ## Where to edit
 
 | What | File |
