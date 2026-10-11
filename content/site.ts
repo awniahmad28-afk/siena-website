@@ -81,7 +81,7 @@ export const WHY = {
   headline: "Built around how your business already works.",
   points: [
     { title: "One system, not more tools", body: "We connect the software you already use instead of creating another isolated platform." },
-    { title: "Designed around your workflows", body: "Every solution is tailored to your operations, so it feels familiar from day one and grows with your business." },
+    { title: "Designed around your workflows", body: "We learn how your business operates, then design technology that supports it at every step." },
     { title: "People stay in control", body: "AI handles what can be automated and brings people in where judgment matters." },
     { title: "Built for daily operations", body: "Reliable, monitored and designed to become part of everyday work." },
   ],
