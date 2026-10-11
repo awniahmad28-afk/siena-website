@@ -2,16 +2,22 @@
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { TailSymbol } from "./TailSymbol";
+import { asset } from "@/lib/asset";
 
 const LINKS = [
   { id: "what", n: "01", label: "About" },
   { id: "solutions", n: "02", label: "Solutions" },
-  { id: "why", n: "03", label: "Why SIENA" },
-  { id: "contact", n: "04", label: "Contact" },
+  { id: "work", n: "03", label: "Our Work", page: "/work" },
+  { id: "why", n: "04", label: "Why SIENA" },
+  { id: "contact", n: "05", label: "Contact" },
 ];
 
-/** Fixed HUD header: highlights the section in view; full-screen menu on small screens. */
-export function FluxHeader({ s }: { s: Record<string, string> }) {
+/** Fixed HUD header: highlights the section in view; full-screen menu on small screens.
+ *  `page` is set on pages other than the homepage: section links then lead back to the homepage. */
+export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "work" }) {
+  const home = page ? asset("/") : "";
+  const href = (l: (typeof LINKS)[number]) => ("page" in l && l.page ? asset(l.page) : `${home}#${l.id}`);
+  const current = (l: (typeof LINKS)[number]) => (page === l.id ? "page" : active === l.id ? "location" : undefined);
   const [active, setActive] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
@@ -19,7 +25,7 @@ export function FluxHeader({ s }: { s: Record<string, string> }) {
 
   /* which section is in view */
   useEffect(() => {
-    const els = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean) as HTMLElement[];
+    const els = LINKS.filter((l) => !("page" in l)).map((l) => document.getElementById(l.id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
       { rootMargin: "-45% 0px -50% 0px" },
@@ -52,16 +58,16 @@ export function FluxHeader({ s }: { s: Record<string, string> }) {
 
   return (
     <header className={s.top} data-open={open || undefined}>
-      <a href="#top" className={s.brand} aria-label="SIENA — back to top">
+      <a href={`${home}#top`} className={s.brand} aria-label="SIENA — back to top">
         <TailSymbol className={s.symbol} />
         <BrandLogo variant="wordmark" alt="SIENA" className={s.word} sizes="100px" priority feather={false} />
       </a>
       <nav aria-label="Primary" className={s.nav}>
-        {LINKS.slice(0, 3).map((l) => (
-          <a key={l.id} href={`#${l.id}`} aria-current={active === l.id ? "location" : undefined}>{l.label}</a>
+        {LINKS.slice(0, 4).map((l) => (
+          <a key={l.id} href={href(l)} aria-current={current(l)}>{l.label}</a>
         ))}
       </nav>
-      <a href="#contact" className={s.topCta} aria-current={active === "contact" ? "location" : undefined}>Build your AI system</a>
+      <a href={`${home}#contact`} className={s.topCta} aria-current={active === "contact" ? "location" : undefined}>Build your AI system</a>
       <button
         ref={toggle}
         type="button"
@@ -79,13 +85,13 @@ export function FluxHeader({ s }: { s: Record<string, string> }) {
         <ul>
           {LINKS.map((l) => (
             <li key={l.id}>
-              <a href={`#${l.id}`} onClick={() => setOpen(false)} aria-current={active === l.id ? "location" : undefined}>
+              <a href={href(l)} onClick={() => setOpen(false)} aria-current={current(l)}>
                 <span>{l.n}</span>{l.label}
               </a>
             </li>
           ))}
         </ul>
-        <a href="#contact" className={s.btn} onClick={() => setOpen(false)}>Build your AI system</a>
+        <a href={`${home}#contact`} className={s.btn} onClick={() => setOpen(false)}>Build your AI system</a>
         <button type="button" className={s.menuClose} onClick={() => setOpen(false)}>Close ✕</button>
       </div>
     </header>

@@ -190,9 +190,9 @@
 
 /* header: section highlight + mobile menu */
 .nav a { position: relative; padding: 6px 0; transition: color 0.2s; }
-.nav a[aria-current="location"] { color: var(--cyan); }
+.nav a[aria-current] { color: var(--cyan); }
 .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--cyan); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; box-shadow: 0 0 8px var(--cyan); }
-.nav a[aria-current="location"]::after { transform: scaleX(1); }
+.nav a[aria-current]::after { transform: scaleX(1); }
 .topCta[aria-current="location"] { background: var(--cyan); color: #001018 !important; }
 .menuBtn {
   display: none; position: relative; width: 42px; height: 38px; padding: 0; cursor: pointer; z-index: 2;
@@ -218,7 +218,7 @@
   font: 600 clamp(2rem, 9vw, 3rem)/1 var(--display); letter-spacing: -0.03em; text-transform: uppercase; color: var(--ink);
 }
 .menu li a span { font: 500 0.75rem/1 var(--mono); color: var(--magenta); letter-spacing: 0.14em; }
-.menu li a[aria-current="location"] { color: var(--cyan); }
+.menu li a[aria-current] { color: var(--cyan); }
 .menu .btn { justify-self: start; }
 .menuClose { justify-self: start; padding: 10px 0; background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; }
 @media (max-width: 900px) {
@@ -379,7 +379,7 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 .nav a { padding: 9px 18px; border-radius: 999px; color: #a9b6cf; transition: color 0.2s, background 0.2s, box-shadow 0.2s; }
 .nav a::after { display: none; }
 .nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
-.nav a[aria-current="location"] { color: #fff; background: rgba(51, 225, 255, 0.14); box-shadow: inset 0 0 0 1px rgba(51, 225, 255, 0.4); }
+.nav a[aria-current] { color: #fff; background: rgba(51, 225, 255, 0.14); box-shadow: inset 0 0 0 1px rgba(51, 225, 255, 0.4); }
 .topCta {
   justify-self: end; display: inline-flex; align-items: center; min-height: 40px; padding: 0 20px; border: 0; border-radius: 999px;
   background: var(--cyan); color: #001018 !important; font-weight: 600; white-space: nowrap;
