@@ -13,6 +13,7 @@ import { SolutionsTide } from "@/components/flux/SolutionsTide";
 import { LogoInterlude } from "@/components/flux/LogoInterlude";
 import { SmoothScroll } from "@/components/flux/SmoothScroll";
 import { EngineButton } from "@/components/flux/EngineButton";
+import { EvolutionLink, type EvoVariant } from "@/components/flux/EvolutionLink";
 import s from "@/app/home.module.css";
 
 const PALETTE: GenesisPalette = {
@@ -28,7 +29,7 @@ const PALETTE: GenesisPalette = {
  * The Genesis Flux homepage. `solutions` replaces the solutions section (used by design previews);
  * by default it is the Tide wheel (SolutionsTide). `core` is the visual after the About text (logo-interlude previews); by default it is the Light Sweep. Keep the section id "solutions" so the header and footer links work.
  */
-export function FluxHome({ solutions, core, cursor = "glow" }: { solutions?: ReactNode; core?: ReactNode; cursor?: CursorStyle }) {
+export function FluxHome({ solutions, core, cursor = "glow", evo = "engine" }: { solutions?: ReactNode; core?: ReactNode; cursor?: CursorStyle; evo?: EvoVariant | "engine" }) {
   return (
     <div className={s.page}>
       <SmoothScroll />
@@ -44,7 +45,7 @@ export function FluxHome({ solutions, core, cursor = "glow" }: { solutions?: Rea
           logoTail="#ff4fd8"
           coords={false}
           cursor={cursor}
-          corner={<EngineButton />}
+          corner={evo === "engine" ? <EngineButton /> : <EvolutionLink variant={evo} />}
           stages={["Signals", "Connections", "Pattern", "Intelligence"]}
           backdrop={
             <div className={s.backdrop} aria-hidden="true">
