@@ -67,7 +67,7 @@ export function FluxHome({ solutions, core, cursor = "glow" }: { solutions?: Rea
               <p className={s.lead}>{WHAT.headline}</p>
               <div className={s.ctas}>
                 <a href="#contact" className={s.btn} data-magnet="">Build your AI system</a>
-                <a href="#solutions" className={s.btnGhost}>Explore modules</a>
+                <a href="#solutions" className={s.btnGhost}>Explore solutions</a>
               </div>
             </>
           }
