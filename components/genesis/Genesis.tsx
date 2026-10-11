@@ -38,7 +38,7 @@ export type CursorStyle = "reticle" | "none" | "glow" | "dot" | "trail";
 type Flow = { x0: number; y0: number; t0: number; dur: number; bend: number };
 
 export function Genesis({
-  variant, palette, stages, intro, outro, backdrop, wordmarkDark = false, logoTail, coords = true, cursor = "reticle",
+  variant, palette, stages, intro, outro, backdrop, wordmarkDark = false, logoTail, coords = true, cursor = "reticle", corner,
 }: {
   variant: GenesisVariant;
   palette: GenesisPalette;
@@ -53,6 +53,8 @@ export function Genesis({
   coords?: boolean;
   /** what follows the cursor over the hero: the targeting reticle, nothing, or a subtle glow / dot / trail */
   cursor?: CursorStyle;
+  /** pinned to the top-right corner of the hero for the whole scroll (e.g. the Evolution button) */
+  corner?: ReactNode;
 }) {
   const track = useRef<HTMLElement>(null);
   const stageEl = useRef<HTMLDivElement>(null);
@@ -391,6 +393,7 @@ export function Genesis({
         {cursor === "dot" && <div className={g.cursor} data-cursor-fast="" aria-hidden="true"><span className={g.cDot} /></div>}
 
         <div className={g.intro}>{intro}</div>
+        {corner && <div className={g.corner}>{corner}</div>}
 
         <ol className={g.hud} aria-hidden="true">
           {stages.map((t, i) => <li key={t} data-i={i}><span>0{i + 1}</span>{t}</li>)}

@@ -12,6 +12,7 @@ import { Counters, Reveal } from "@/components/flux/Reveal";
 import { SolutionsTide } from "@/components/flux/SolutionsTide";
 import { LogoInterlude } from "@/components/flux/LogoInterlude";
 import { SmoothScroll } from "@/components/flux/SmoothScroll";
+import { EngineButton } from "@/components/flux/EngineButton";
 import s from "@/app/home.module.css";
 
 const PALETTE: GenesisPalette = {
@@ -43,6 +44,7 @@ export function FluxHome({ solutions, core, cursor = "glow" }: { solutions?: Rea
           logoTail="#ff4fd8"
           coords={false}
           cursor={cursor}
+          corner={<EngineButton />}
           stages={["Signals", "Connections", "Pattern", "Intelligence"]}
           backdrop={
             <div className={s.backdrop} aria-hidden="true">

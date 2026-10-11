@@ -195,3 +195,7 @@
 .cGlow { width: 260px; height: 260px; left: -130px; top: -130px; background: radial-gradient(closest-side, rgba(51, 225, 255, 0.14), rgba(122, 162, 255, 0.05) 55%, transparent); mix-blend-mode: screen; }
 .cRing { width: 30px; height: 30px; left: -15px; top: -15px; border: 1px solid rgba(51, 225, 255, 0.45); }
 .cDot { width: 5px; height: 5px; left: -2.5px; top: -2.5px; background: var(--g-accent, #33e1ff); box-shadow: 0 0 8px rgba(51, 225, 255, 0.7); }
+
+/* top-right corner slot (stays put while the hero scrolls) */
+.corner { position: absolute; z-index: 6; top: calc(env(safe-area-inset-top, 0px) + 96px); right: clamp(16px, 4vw, 56px); }
+@media (max-width: 860px) { .corner { top: calc(env(safe-area-inset-top, 0px) + 78px); right: 14px; } }

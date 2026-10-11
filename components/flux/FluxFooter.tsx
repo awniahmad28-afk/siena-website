@@ -25,11 +25,7 @@ export function FluxFooter({ s }: { s: Record<string, string> }) {
             </ul>
           </div>
           <div>
-            <h2>Explore</h2>
-            <ul>
-              <li><a href="#evolution">Experience the Evolution →</a></li>
-            </ul>
-            <h2 className={s.footH2Gap}>Contact</h2>
+            <h2>Contact</h2>
             <ul>
               <li><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
               <li><a href="#contact">{CONTACT.cta} →</a></li>
