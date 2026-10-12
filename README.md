@@ -36,7 +36,7 @@ One tab per service. Pictures and videos come straight from folders, with no cod
 
 `public/work/apps/` · `websites/` · `agents/` · `automation/` · `systems/` · `marketing/`
 
-Drop images (`.jpg`, `.png`, `.webp`) or videos (`.mp4`, `.webm`) into a service's folder and they appear under that tab, in file-name order. The file name becomes the caption (`01-bloom-salon-website.jpg` → "Bloom salon website"). A video gets a cover picture from an image with the same name (`tour.mp4` + `tour.jpg`). Keep videos short and compressed (under ~20 MB). A tab with nothing in it shows "Projects coming soon." The page text is in `content/work.ts`.
+Each **sub-folder is a project** (e.g. `public/work/websites/dolce-aesthetic-clinic/`): its first picture is the card cover, its first video plays on the card, and all its pictures and videos open in the project viewer. Give a project its title and description in `PROJECTS` in `content/work.ts` (keyed by folder name). Pictures or videos placed directly in a service folder appear as a simple gallery, in file-name order. The file name becomes the caption (`01-bloom-salon-website.jpg` → "Bloom salon website"). A video gets a cover picture from an image with the same name (`tour.mp4` + `tour.jpg`). Keep videos short and compressed (under ~20 MB). A tab with nothing in it shows "Projects coming soon." The page text is in `content/work.ts`.
 
 ## Where to edit
 
