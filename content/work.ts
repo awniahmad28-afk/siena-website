@@ -24,12 +24,12 @@ export const PROJECTS: Record<string, { title?: string; client?: string; summary
     title: "Dolce Aesthetic Clinic",
     client: "Aesthetic clinic · Erbil",
     summary:
-      "A bilingual English and Arabic website for a premium aesthetic clinic, presenting its dermatology, plastic surgery and wellness services, real before-and-after results, the clinic’s story and the Dolce+ app.",
+      "A trilingual English, Arabic and Kurdish website for a premium aesthetic clinic, presenting its dermatology, plastic surgery and wellness services, real before-and-after results, the clinic’s story and the Dolce+ app.",
   },
   "polished-by-dolce": {
     title: "Polished by Dolce",
     client: "Beauty salon · Erbil",
     summary:
-      "A refined website for the hair, nails and beauty salon of Dolce Aesthetic Clinic, with its service menu, a gallery of recent work, client reviews and easy booking through WhatsApp and Instagram, in English and Arabic.",
+      "A refined website for the hair, nails and beauty salon of Dolce Aesthetic Clinic, with its service menu, a gallery of recent work, client reviews and easy booking through WhatsApp and Instagram, in English, Arabic and Kurdish.",
   },
 };
