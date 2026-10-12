@@ -1,6 +1,6 @@
 # SIENA — The Evolution of Business Systems
 
-Official homepage for **SIENA — AI Solutions & Systems**.
+Official homepage for **SIENA Solutions**.
 *One desk. One business. Centuries of evolution.*
 
 ## Run it

@@ -2,7 +2,7 @@
   "name": "siena-web",
   "version": "1.0.0",
   "private": true,
-  "description": "SIENA — AI Solutions & Systems. The Evolution of Business Systems.",
+  "description": "SIENA Solutions. The Evolution of Business Systems.",
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/build-plates.mjs && next build",

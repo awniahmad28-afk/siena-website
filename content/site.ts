@@ -2,10 +2,10 @@
 
 export const SITE = {
   name: "SIENA",
-  tagline: "AI Solutions & Systems",
+  tagline: "Solutions",
   url: "https://example.com", // TODO: replace with the production domain
   description:
-    "SIENA builds intelligent business systems — AI integrations, automation and workflow optimization that connect finance, sales, service, operations, marketing and analytics.",
+    "SIENA Solutions designs and builds apps, websites, AI agents, automation, business systems and marketing for growing businesses.",
   /** TODO: replace with SIENA's real enquiry address */
   contactEmail: "contact@example.com",
 };
@@ -18,7 +18,7 @@ export const NAV = [
 ];
 
 export const HERO = {
-  eyebrow: "SIENA — AI Solutions & Systems",
+  eyebrow: "SIENA Solutions",
   headline: "The Evolution of Business Systems",
   lead: "From human records to intelligent systems.",
   storyCta: "Experience the Evolution",

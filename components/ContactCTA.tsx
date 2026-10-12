@@ -62,7 +62,7 @@ export function Footer() {
       <div className="container footer-inner">
         <BrandLogo variant="wordmark" alt="SIENA" className="footer-word" sizes="140px" feather={false} />
         <p>
-          © {new Date().getFullYear()} SIENA — AI Solutions &amp; Systems
+          © {new Date().getFullYear()} SIENA Solutions
         </p>
       </div>
     </footer>

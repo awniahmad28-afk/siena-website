@@ -9,12 +9,12 @@ import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "SIENA — AI Solutions & Systems | The Evolution of Business Systems",
+  title: "SIENA Solutions | The Evolution of Business Systems",
   description: SITE.description,
   openGraph: {
     title: "SIENA — The Evolution of Business Systems",
     description: "From paper. To software. To intelligence.",
-    images: [{ url: asset("/brand/og.jpg"), width: 1200, height: 630, alt: "SIENA — AI Solutions & Systems" }],
+    images: [{ url: asset("/brand/og.jpg"), width: 1200, height: 630, alt: "SIENA Solutions" }],
     type: "website",
   },
 };

@@ -2,7 +2,7 @@
 /**
  * SienaReveal — the final statement.
  * Centuries of business evolution → 100 years of acceleration → FROM PAPER. TO SOFTWARE. TO INTELLIGENCE.
- * → SIENA · AI SOLUTIONS & SYSTEMS → CTAs.
+ * → SIENA SOLUTIONS → CTAs.
  */
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { REVEAL, SERVICES } from "@/content/site";
@@ -78,7 +78,7 @@ export function SienaReveal({ opening = false, scroller, story = false }: { open
           {opening && (
             <div className="reveal-openword" data-openword>
               <BrandLogo variant="wordmark" alt="SIENA" sizes="(max-width: 700px) 56vw, 300px" priority feather={false} />
-              <span className="reveal-openword-tag">AI Solutions &amp; Systems</span>
+              <span className="reveal-openword-tag">Solutions</span>
             </div>
           )}
           <p className="reveal-kicker" data-k1>{REVEAL.kicker1}</p>

@@ -558,7 +558,7 @@ const extras: Record<string, (c: Ctx) => void> = {
     tl.to(coreGlow, { opacity: 0.35, scale: 1, duration: 0.4 }, S + 0.6);
     tl.to(nodes, { opacity: 0.22, duration: 0.3 }, S + 0.7);
 
-    // 7 · SIENA — AI SOLUTIONS & SYSTEMS
+    // 7 · SIENA SOLUTIONS
     tl.to(clip, { attr: { height: LOCKUP.h }, duration: 0.35, ease: "power2.out" }, s + ch.w * 0.86);
   },
 

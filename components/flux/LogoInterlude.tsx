@@ -105,7 +105,7 @@ export function LogoInterlude({ variant }: { variant: InterludeVariant }) {
         {variant === "lockup" ? (
           <span className={l.lockup}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/brand/siena-lockup.webp")} width={904} height={850} alt="SIENA — AI Solutions & Systems" />
+            <img src={asset("/brand/siena-lockup.webp")} width={904} height={850} alt="SIENA Solutions" />
           </span>
         ) : (
           <span className={l.holder}><Mark /></span>

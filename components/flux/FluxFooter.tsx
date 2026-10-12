@@ -36,7 +36,7 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
         </nav>
       </div>
       <div className={s.footBar}>
-        <span>© {new Date().getFullYear()} {SITE.name} · {SITE.tagline}</span>
+        <span>© {new Date().getFullYear()} {SITE.name} {SITE.tagline}</span>
         <a href={`${home}#top`}>Back to top ↑</a>
       </div>
     </footer>

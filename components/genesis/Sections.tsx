@@ -53,7 +53,7 @@ export function Sections({ s, whatTitle }: { s: Record<string, string>; whatTitl
       </section>
 
       <footer className={s.foot}>
-        <span>© {SITE.name} · {SITE.tagline}</span>
+        <span>© {SITE.name} {SITE.tagline}</span>
         <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
       </footer>
     </>

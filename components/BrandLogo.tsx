@@ -13,7 +13,7 @@ const SIZES: Record<Variant, { w: number; h: number; small: number }> = {
 };
 
 export function BrandLogo({
-  variant = "lockup", alt = "SIENA — AI Solutions & Systems", className = "", sizes = "(max-width: 700px) 70vw, 420px", priority = false, feather = true,
+  variant = "lockup", alt = "SIENA Solutions", className = "", sizes = "(max-width: 700px) 70vw, 420px", priority = false, feather = true,
 }: { variant?: Variant; alt?: string; className?: string; sizes?: string; priority?: boolean; feather?: boolean }) {
   const s = SIZES[variant];
   const base = asset(`/brand/siena-${variant}`);

@@ -10,7 +10,7 @@ import s from "@/app/home.module.css";
 import w from "@/components/flux/work.module.css";
 
 export const metadata: Metadata = {
-  title: "Our Work | SIENA — AI Solutions & Systems",
+  title: "Our Work | SIENA Solutions",
   description: WORK.intro,
 };
 

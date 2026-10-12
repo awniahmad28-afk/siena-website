@@ -6,7 +6,9 @@
 import sharp from "sharp";
 import { mkdirSync } from "node:fs";
 
-const SRC = "brand/SIENA logo.JPG"; // 1254 x 1254 official master
+// 1254 x 1254 master: the official "SIENA logo.JPG" with the tagline reduced to its own "SOLUTIONS" (the company is now
+// SIENA Solutions). Made by moving the original "SOLUTIONS" pixels to the centre and clearing "AI", "&" and "SYSTEMS".
+const SRC = "brand/SIENA logo - Solutions.png";
 const OUT = "public/brand";
 const FIELD = 30; // brightest value of the logo's dark background field (sampled: ~ rgb(5,12,28))
 mkdirSync(OUT, { recursive: true });

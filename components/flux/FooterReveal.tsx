@@ -22,7 +22,7 @@ export function FooterReveal({ className = "", emClass = "" }: { className?: str
   return (
     <div ref={root} className={`${r.root} ${className}`}>
       <span className={r.logo}>
-        <TailLockup alt="SIENA — AI Solutions & Systems" sizes="400px" />
+        <TailLockup alt="SIENA Solutions" sizes="400px" />
       </span>
       <p className={r.line}>
         <span>From scattered data </span>

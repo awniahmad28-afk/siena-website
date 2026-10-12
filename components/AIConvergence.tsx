@@ -78,7 +78,7 @@ export function SienaLockup() {
           height={LOCKUP.h}
           preserveAspectRatio="xMidYMid meet"
         >
-          <title>SIENA — AI Solutions &amp; Systems</title>
+          <title>SIENA Solutions</title>
         </image>
         {/* the pink tail, as on the header and hero: a gradient cut to the official symbol's own shape */}
         <rect x={LOCKUP.x} y={LOCKUP.y} width={LOCKUP.w} height={LOCKUP.h} fill="url(#ai-tail)" mask="url(#ai-tail-mask)" />
