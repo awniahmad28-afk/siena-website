@@ -75,7 +75,7 @@ export const ABOUT = {
   services: [
     { title: "Custom Websites", body: "Professional, high-performing websites that represent your brand and serve your customers." },
     { title: "Mobile Applications", body: "Intuitive applications designed around the people who use them every day." },
-    { title: "Digital Systems", body: "Integrated platforms and automation that streamline operations and connect your business." },
+    { title: "Digital Systems", body: "Custom business software such as point-of-sale, booking and inventory systems, built to run your daily operations." },
   ],
 };
 
