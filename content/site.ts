@@ -6,8 +6,8 @@ export const SITE = {
   url: "https://example.com", // TODO: replace with the production domain
   description:
     "SIENA Solutions designs and builds apps, websites, AI agents, automation, business systems and marketing for growing businesses.",
-  /** TODO: replace with SIENA's real enquiry address */
-  contactEmail: "contact@example.com",
+  /** enquiry address (contact section, footer, enquiry form) */
+  contactEmail: "contact@siena-solutions.com",
   /** TODO: replace with SIENA's real number, in international format (used for the WhatsApp and Call buttons) */
   phone: "+964 000 000 0000",
   /** pre-filled first WhatsApp message */
