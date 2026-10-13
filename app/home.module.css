@@ -331,6 +331,24 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 .termNote { margin: 0; font: 500 0.7rem/1.4 var(--mono); letter-spacing: 0.08em; color: var(--muted); }
 .log { margin: 0; padding: 12px 14px; font: 500 0.78rem/1.6 var(--mono); color: var(--cyan); background: rgba(3, 5, 13, 0.9); border-left: 2px solid var(--cyan); white-space: pre-wrap; }
 @media (max-width: 900px) { .contactWrap { grid-template-columns: 1fr; } }
+/* quick contact buttons: WhatsApp on every screen, Call on phones only */
+.quick { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+.quickBtn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 999px; text-decoration: none;
+  font: 500 0.78rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.quickBtn svg { width: 20px; height: 20px; flex: none; }
+.quickBtn:hover { transform: translateY(-2px); }
+.wa { color: #fff; background: #1faa59; border: 1px solid #25d366; box-shadow: 0 8px 24px -10px rgba(37, 211, 102, 0.6); }
+.wa:hover { background: #25d366; }
+.call { display: none; color: var(--ink); background: rgba(51, 225, 255, 0.08); border: 1px solid rgba(51, 225, 255, 0.45); }
+.call svg { color: var(--cyan); }
+.call:hover { background: rgba(51, 225, 255, 0.16); border-color: var(--cyan); }
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .call { display: inline-flex; }
+  .quick { display: grid; grid-template-columns: 1fr 1fr; }
+  .quickBtn { justify-content: center; padding: 15px 12px; }
+}
 @media (max-width: 520px) { .fieldRow { grid-template-columns: 1fr; } }
 
 /* Footer */

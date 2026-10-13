@@ -8,6 +8,10 @@ export const SITE = {
     "SIENA Solutions designs and builds apps, websites, AI agents, automation, business systems and marketing for growing businesses.",
   /** TODO: replace with SIENA's real enquiry address */
   contactEmail: "contact@example.com",
+  /** TODO: replace with SIENA's real number, in international format (used for the WhatsApp and Call buttons) */
+  phone: "+964 000 000 0000",
+  /** pre-filled first WhatsApp message */
+  whatsappText: "Hello SIENA Solutions, I’d like to talk about a project.",
 };
 
 export const NAV = [
