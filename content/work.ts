@@ -24,7 +24,7 @@ export const PROJECTS: Record<string, { title?: string; client?: string; summary
     title: "Dolce+ App",
     client: "Beauty & wellness app · Erbil",
     summary:
-      "One app for the Dolce, Polished and Core brands, where clients browse services, book appointments, shop products, earn loyalty rewards and get help from an AI assistant, in English, Arabic and Kurdish.",
+      "Dolce+ brings the entire experience together. One app. Three brands. One connected community. Through Dolce+, clients can discover services, book appointments and classes, earn loyalty points, unlock exclusive rewards and offers, and move seamlessly between Dolce, Polished, and Core.",
   },
   "dolce-aesthetic-clinic": {
     title: "Dolce Aesthetic Clinic",
