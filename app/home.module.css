@@ -339,11 +339,11 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 }
 .quickBtn svg { width: 20px; height: 20px; flex: none; }
 .quickBtn:hover { transform: translateY(-2px); }
-.wa { color: #fff; background: #1faa59; border: 1px solid #25d366; box-shadow: 0 8px 24px -10px rgba(37, 211, 102, 0.6); }
-.wa:hover { background: #25d366; }
-.call { display: none; color: var(--ink); background: rgba(51, 225, 255, 0.08); border: 1px solid rgba(51, 225, 255, 0.45); }
-.call svg { color: var(--cyan); }
-.call:hover { background: rgba(51, 225, 255, 0.16); border-color: var(--cyan); }
+/* both in the site's own colours: dark glass, cyan outline and icon */
+.wa, .call { color: var(--ink); background: rgba(51, 225, 255, 0.08); border: 1px solid rgba(51, 225, 255, 0.45); }
+.wa svg, .call svg { color: var(--cyan); }
+.wa:hover, .call:hover { background: rgba(51, 225, 255, 0.16); border-color: var(--cyan); box-shadow: 0 8px 24px -12px rgba(51, 225, 255, 0.55); }
+.call { display: none; }
 @media (max-width: 900px), (hover: none) and (pointer: coarse) {
   .call { display: inline-flex; }
   .quick { display: grid; grid-template-columns: 1fr 1fr; }
