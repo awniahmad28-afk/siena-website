@@ -52,7 +52,7 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
                   </button>
                   <p className={w.stat}>
                     {p.items.filter((m) => m.type === "image").length} pictures
-                    {p.items.some((m) => m.type === "video") && ` · ${p.items.filter((m) => m.type === "video").length} video`}
+                    {(() => { const v = p.items.filter((m) => m.type === "video").length; return v ? ` · ${v} video${v > 1 ? "s" : ""}` : ""; })()}
                   </p>
                 </div>
               </li>

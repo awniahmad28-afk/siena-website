@@ -20,6 +20,12 @@ export const WORK = {
 
 /** DRAFT descriptions (written from the screenshots) — check and edit freely. */
 export const PROJECTS: Record<string, { title?: string; client?: string; summary?: string }> = {
+  "dolce-plus-app": {
+    title: "Dolce+ App",
+    client: "Beauty & wellness app · Erbil",
+    summary:
+      "One app for the Dolce, Polished and Core brands, where clients browse services, book appointments, shop products, earn loyalty rewards and get help from an AI assistant, in English, Arabic and Kurdish.",
+  },
   "dolce-aesthetic-clinic": {
     title: "Dolce Aesthetic Clinic",
     client: "Aesthetic clinic · Erbil",
