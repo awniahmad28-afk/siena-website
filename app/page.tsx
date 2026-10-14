@@ -6,7 +6,7 @@ import { getAvailablePlates } from "@/lib/plates.server";
 
 /**
  * The homepage: Genesis Flux. "Experience the Evolution" (any #evolution link) opens the full-screen
- * Evolution story on top of it (StoryLayer). The previous homepage is kept at /preview/classic.
+ * Evolution story on top of it (StoryLayer).
  */
 export default function Home() {
   return (
