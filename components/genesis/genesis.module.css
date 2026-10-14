@@ -114,7 +114,7 @@
 .panelBtn:hover { border-color: var(--g-accent); }
 
 @media (max-width: 899px) {
-  .root { height: 360vh; }
+  .root { height: 300vh; } /* phones: 100vh stage + 200vh of scroll (30% faster than 360vh) */
   .hud { top: auto; bottom: 10vh; translate: none; grid-template-columns: repeat(4, auto); gap: 8px; }
   .hud li { font-size: 0 !important; gap: 0; }
   .hud li span { font-size: 0.66rem; width: 28px; height: 28px; }
