@@ -83,11 +83,25 @@ export const ABOUT = {
 export const WHY = {
   eyebrow: "Why SIENA",
   headline: "Built around how your business already works.",
+  intro:
+    "Most businesses do not need more software. They need the tools they already have to work together, built by a team that understands how they operate.",
   points: [
-    { title: "One system, not more tools", body: "We connect the software you already use instead of creating another isolated platform." },
-    { title: "Designed around your workflows", body: "We learn how your business operates, then design technology that supports it at every step." },
-    { title: "People stay in control", body: "AI handles what can be automated and brings people in where judgment matters." },
-    { title: "Built for daily operations", body: "Reliable, monitored and designed to become part of everyday work." },
+    {
+      title: "One system, not more tools",
+      body: "We connect the software you already use, from your point of sale and booking system to your accounts and messaging, instead of adding another isolated platform. Information moves between them automatically, so your team works from one accurate picture of the business.",
+    },
+    {
+      title: "Designed around your workflows",
+      body: "We learn how your business operates, then design technology that supports it at every step. Every app, website and system is shaped around your processes and your people, so it feels familiar from the first day.",
+    },
+    {
+      title: "People stay in control",
+      body: "Automation and AI take care of repetitive work, while your team keeps the final say. Important decisions, approvals and sensitive conversations are always brought to the right person.",
+    },
+    {
+      title: "Built for daily operations",
+      body: "Our solutions are reliable, secure and monitored, designed to become a dependable part of everyday work and to grow with your business over time.",
+    },
   ],
 };
 

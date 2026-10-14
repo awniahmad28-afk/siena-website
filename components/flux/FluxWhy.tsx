@@ -14,7 +14,7 @@ const RING = NODES.map((_, i) => {
   return [C.x + Math.cos(a) * 300, C.y + Math.sin(a) * 160];
 });
 
-/** "Why SIENA": flip between isolated tools and one connected system, then the four principles as readouts. */
+/** "Why SIENA": a short introduction and the four principles as text, then the Without / With SIENA comparison. */
 export function FluxWhy({ s }: { s: Record<string, string> }) {
   const [on, setOn] = useState(false);
   const touched = useRef(false);
@@ -39,6 +39,18 @@ export function FluxWhy({ s }: { s: Record<string, string> }) {
     <section id="why" className={s.section} data-reveal="">
       <p className={s.eyebrow}>{WHY.eyebrow}</p>
       <h2 className={s.h2}>{WHY.headline}</h2>
+      <p className={s.whyIntro}>{WHY.intro}</p>
+
+      {/* the four principles as text, above the Without / With comparison */}
+      <ol className={s.whyPoints}>
+        {WHY.points.map((p, i) => (
+          <li key={p.title}>
+            <span className={s.serviceN}>0{i + 1}</span>
+            <h3 className={s.serviceTitle}>{p.title}</h3>
+            <p>{p.body}</p>
+          </li>
+        ))}
+      </ol>
 
       <div className={s.compare} ref={ref} data-on={on || undefined}>
         <div className={s.switch} role="group" aria-label="Compare">
@@ -75,16 +87,6 @@ export function FluxWhy({ s }: { s: Record<string, string> }) {
         </p>
       </div>
 
-      <ul className={s.readouts}>
-        {WHY.points.map((p, i) => (
-          <li key={p.title} className={s.card} data-spot="" style={{ "--i": i } as CSSProperties}>
-            <span className={s.readoutHead}><span className={s.cardN}>P-0{i + 1}</span><span className={s.ok}>● Active</span></span>
-            <h3 className={s.h3}>{p.title}</h3>
-            <p>{p.body}</p>
-            <span className={s.scanline} aria-hidden="true" />
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

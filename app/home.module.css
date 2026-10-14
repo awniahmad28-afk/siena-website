@@ -426,6 +426,12 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 .aboutText p { margin: 0; max-width: 58ch; font-size: clamp(1rem, 1.25vw, 1.12rem); line-height: 1.75; color: #b9c4d8; }
 .aboutText p:first-child { color: var(--ink); }
 .services { margin: clamp(40px, 6vh, 64px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+/* Why SIENA: introduction and principles as text */
+.whyIntro { margin: 18px 0 0; max-width: 60ch; font-size: clamp(1rem, 1.25vw, 1.12rem); line-height: 1.75; color: #b9c4d8; }
+.whyPoints { margin: clamp(36px, 5vh, 56px) 0 clamp(40px, 6vh, 64px); padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vh, 40px) clamp(28px, 5vw, 80px); }
+.whyPoints li { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid rgba(120, 170, 255, 0.22); }
+.whyPoints p { margin: 0; max-width: 56ch; color: var(--muted); line-height: 1.7; }
+@media (max-width: 860px) { .whyPoints { grid-template-columns: 1fr; } }
 .services li { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid rgba(120, 170, 255, 0.22); }
 .services p { margin: 0; color: var(--muted); line-height: 1.65; }
 .serviceN { font: 500 0.72rem/1 var(--mono); letter-spacing: 0.16em; color: var(--cyan); }
