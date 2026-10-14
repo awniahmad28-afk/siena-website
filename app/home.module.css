@@ -1,4 +1,5 @@
 .page {
+  overflow-x: clip; /* nothing decorative may widen the page sideways on phones (clip keeps sticky scenes working) */
   --bg: #03050d;
   --ink: #e8f6ff;
   --muted: #7f93b3;

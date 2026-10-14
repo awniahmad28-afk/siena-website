@@ -1,5 +1,5 @@
 /* Solutions — Tide. Inherits Flux colours/fonts from the page (--cyan, --ink, --muted, --display, --mono, --gutter). */
-.root { position: relative; padding: clamp(80px, 14vh, 150px) var(--gutter, 24px) 0; isolation: isolate; }
+.root { position: relative; padding: clamp(80px, 14vh, 150px) var(--gutter, 24px) 0; isolation: isolate; overflow-x: clip; }
 
 /* drifting pools of light; the layer sticks to the viewport while the section is on screen */
 .water { position: sticky; top: 0; height: 100svh; margin-bottom: -100svh; z-index: -1; overflow: hidden; pointer-events: none; margin-inline: calc(-1 * var(--gutter, 24px)); }
