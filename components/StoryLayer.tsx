@@ -234,10 +234,11 @@ export function StoryLayer({ plates }: { plates: AvailablePlate[] }) {
         <span ref={barRef} />
       </div>
       <div className="story-bar">
-        <span className="story-brand" aria-hidden="true">
+        {/* the logo closes the story and returns to the top of the homepage (Close keeps the visitor's place) */}
+        <button type="button" className="story-brand" onClick={() => close("#top")} aria-label="SIENA Solutions — back to the homepage">
           <TailSymbol className="site-brand-symbol" sizes="40px" />
           <BrandLogo variant="wordmark" alt="" className="site-brand-word" sizes="120px" feather={false} />
-        </span>
+        </button>
       </div>
       <div className="story-controls">
         <button type="button" className="story-skip" onClick={skipToAI} data-hidden={pastAI || !api ? "" : undefined} tabIndex={pastAI ? -1 : 0}>

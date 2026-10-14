@@ -391,7 +391,9 @@ html.story-open, html.story-open body { overflow: hidden; }
   position: absolute; inset: 0 0 auto 0; z-index: 20; pointer-events: none;
   display: flex; align-items: center; justify-content: space-between; padding: 14px var(--gutter);
 }
-.story-brand { display: flex; align-items: center; gap: 12px; opacity: 0.9; }
+.story-brand { display: flex; align-items: center; gap: 12px; opacity: 0.9; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; pointer-events: auto; transition: opacity 0.2s; }
+.story-brand:hover { opacity: 1; }
+.story-brand:focus-visible { outline: 2px solid var(--accent, #2f7bff); outline-offset: 6px; border-radius: 6px; }
 .story-progress { position: absolute; inset: 0 0 auto 0; height: 2px; z-index: 30; background: rgba(156,194,255,0.07); pointer-events: none; }
 .story-progress span { display: block; height: 100%; background: linear-gradient(90deg, rgba(47,123,255,0.35), rgba(91,155,255,0.85)); transform-origin: left; transform: scaleX(0); }
 .story-controls {
