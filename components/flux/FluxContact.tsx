@@ -1,6 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import { CONTACT, SERVICES, SITE } from "@/content/site";
+import { CopyEmail } from "./CopyEmail";
 
 /** Terminal-style enquiry. The site is static, so it opens a pre-filled email in the visitor's mail app. */
 export function FluxContact({ s }: { s: Record<string, string> }) {
@@ -40,7 +41,7 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
         <p className={s.eyebrow}>{CONTACT.eyebrow}</p>
         <h2 className={s.h2}>{CONTACT.headline}</h2>
         <p className={s.sectionLead}>{CONTACT.body}</p>
-        <p className={s.direct}>Or write to us directly: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+        <p className={s.direct}>Or write to us directly: <CopyEmail s={s} /></p>
         {/* quick contact: WhatsApp everywhere, Call on phones only */}
         <div className={s.quick}>
           <a className={`${s.quickBtn} ${s.wa}`} href={`https://wa.me/${digits}?text=${encodeURIComponent(SITE.whatsappText)}`} target="_blank" rel="noopener noreferrer">

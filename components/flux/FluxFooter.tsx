@@ -1,4 +1,5 @@
 import { FooterReveal } from "./FooterReveal";
+import { CopyEmail } from "./CopyEmail";
 import { SERVICES, SITE } from "@/content/site";
 import { asset } from "@/lib/asset";
 
@@ -37,7 +38,7 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
           <div>
             <h2>Contact</h2>
             <ul>
-              <li><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
+              <li><CopyEmail s={s} compact /></li>
               <li><a href={`https://wa.me/${digits}?text=${encodeURIComponent(SITE.whatsappText)}`} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
               {SITE.location && <li className={s.footPlain}>{SITE.location}</li>}
               <li><a className={s.footCta} href={`${home}#contact`}>Start a project →</a></li>

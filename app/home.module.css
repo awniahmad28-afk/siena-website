@@ -449,3 +449,27 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
   .aboutText { padding-top: 12px; }
   .services { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* contact email: plain text + copy button on desktop, a tappable mailto link on phones */
+.mail { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; max-width: 100%; }
+.mailLink { display: none; }
+.mailText { color: var(--ink); user-select: all; overflow-wrap: anywhere; }
+.copyBtn {
+  position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 9px; border-radius: 999px;
+  border: 1px solid rgba(51, 225, 255, 0.4); background: rgba(51, 225, 255, 0.07); color: var(--cyan);
+  font: 500 0.7rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.copyBtn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.copyBtn:hover { background: rgba(51, 225, 255, 0.15); border-color: var(--cyan); box-shadow: 0 6px 18px -10px rgba(51, 225, 255, 0.6); transform: translateY(-1px); }
+.copyBtn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.copyBtn[data-copied] { color: #7dffb4; border-color: rgba(125, 255, 180, 0.55); background: rgba(125, 255, 180, 0.1); }
+.copyBtn[data-copied] svg { animation: copyPop 0.35s ease; }
+@keyframes copyPop { from { transform: scale(0.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.copyCompact { padding: 5px; }
+.copyLive { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.footCols .mailText { color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .mailLink { display: inline; }
+  .mailText, .copyBtn { display: none; }
+}
