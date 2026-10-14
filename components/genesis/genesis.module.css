@@ -199,3 +199,7 @@
 /* top-right corner slot (stays put while the hero scrolls) */
 .corner { position: absolute; z-index: 6; top: calc(env(safe-area-inset-top, 0px) + 96px); right: clamp(16px, 4vw, 56px); }
 @media (max-width: 860px) { .corner { top: calc(env(safe-area-inset-top, 0px) + 78px); right: 14px; } }
+/* touch screens: holding a finger on the hero moves the stars; it must not start text selection, the copy menu or the tap highlight */
+@media (hover: none) {
+  .stage, .stage * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+}

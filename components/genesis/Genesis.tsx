@@ -332,6 +332,8 @@ export function Genesis({
         className={g.stage}
         onPointerMove={(e) => { const l = local(e); mouse.current = { ...l, in: true }; }}
         onPointerLeave={() => { mouse.current.in = false; }}
+        /* touch screens: a long press plays with the stars instead of opening the copy / select menu */
+        onContextMenu={(e) => { if (window.matchMedia("(hover: none)").matches) e.preventDefault(); }}
         onPointerDown={(e) => {
           if ((e.target as HTMLElement).closest("button, a")) return;
           const l = local(e);
