@@ -63,7 +63,7 @@ export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "wor
         <BrandLogo variant="wordmark" alt="SIENA" className={s.word} sizes="100px" priority feather={false} />
       </a>
       <nav aria-label="Primary" className={s.nav}>
-        {LINKS.slice(0, 4).map((l) => (
+        {LINKS.map((l) => (
           <a key={l.id} href={href(l)} aria-current={current(l)}>{l.label}</a>
         ))}
       </nav>
