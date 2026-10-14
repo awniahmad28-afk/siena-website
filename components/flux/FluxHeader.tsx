@@ -7,7 +7,7 @@ import { asset } from "@/lib/asset";
 const LINKS = [
   { id: "what", n: "01", label: "About" },
   { id: "solutions", n: "02", label: "Solutions" },
-  { id: "work", n: "03", label: "Our Work", page: "/work" },
+  { id: "work", n: "03", label: "Our Work", page: "/work/" },
   { id: "why", n: "04", label: "Why SIENA" },
   { id: "contact", n: "05", label: "Contact" },
 ];
@@ -58,7 +58,7 @@ export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "wor
 
   return (
     <header className={s.top} data-open={open || undefined}>
-      <a href={`${home}#top`} className={s.brand} aria-label="SIENA — back to top">
+      <a href={page ? asset("/") : "#top"} className={s.brand} aria-label={page ? "SIENA — home" : "SIENA — back to top"}>
         <TailSymbol className={s.symbol} />
         <BrandLogo variant="wordmark" alt="SIENA" className={s.word} sizes="100px" priority feather={false} />
       </a>

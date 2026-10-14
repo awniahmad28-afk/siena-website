@@ -15,7 +15,7 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
             <ul>
               <li><a href={`${home}#what`}>About SIENA</a></li>
               <li><a href={`${home}#solutions`}>Solutions</a></li>
-              <li><a href={asset("/work")}>Our Work</a></li>
+              <li><a href={asset("/work/")}>Our Work</a></li>
               <li><a href={`${home}#why`}>Why SIENA</a></li>
               <li><a href={`${home}#contact`}>Contact</a></li>
             </ul>
@@ -37,7 +37,7 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
       </div>
       <div className={s.footBar}>
         <span>© {new Date().getFullYear()} {SITE.name} {SITE.tagline}</span>
-        <a href={`${home}#top`}>Back to top ↑</a>
+        <a href="#top">Back to top ↑</a>
       </div>
     </footer>
   );

@@ -17,7 +17,10 @@ export function SmoothScroll() {
     const html = document.documentElement;
     const mo = new MutationObserver(() => (html.classList.contains("story-open") ? lenis.stop() : lenis.start()));
     mo.observe(html, { attributes: true, attributeFilter: ["class"] });
-    return () => { cancelAnimationFrame(raf); mo.disconnect(); lenis.destroy(); };
+    /* page restored from the browser's back/forward cache: make sure scrolling is running again */
+    const onShow = (e: PageTransitionEvent) => { if (e.persisted && !html.classList.contains("story-open")) lenis.start(); };
+    window.addEventListener("pageshow", onShow);
+    return () => { cancelAnimationFrame(raf); mo.disconnect(); window.removeEventListener("pageshow", onShow); lenis.destroy(); };
   }, []);
   return null;
 }

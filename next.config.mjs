@@ -5,6 +5,9 @@ const nextConfig = {
   // lets phones/tablets on the same Wi-Fi load `npm run dev` (Next.js blocks other devices by default)
   allowedDevOrigins: ["10.*.*.*", "192.168.*.*", "172.*.*.*", "*.local"],
   output: "export",            // static HTML: deploy to any CDN
+  // every page is exported as <page>/index.html and linked as /<page>/, so a page never clashes with a folder of the
+  // same name (e.g. /work and the public/work/ media folder)
+  trailingSlash: true,
   images: { unoptimized: true }, // brand images are pre-optimised (AVIF/WebP) by `npm run assets`
   reactStrictMode: true,
   poweredByHeader: false,

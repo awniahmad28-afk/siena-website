@@ -16,6 +16,21 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
   const [viewer, setViewer] = useState<Viewer | null>(null);
   const current = categories.find((c) => c.id === cat) ?? categories[0];
 
+  /* leaving the page: stop and unload every video so the next page (the animated homepage) has the memory it needs,
+     which matters on iPhones; restore them if Safari brings this page back from its back/forward cache */
+  useEffect(() => {
+    const hide = () => document.querySelectorAll("video").forEach((v) => {
+      v.pause(); v.dataset.src = v.currentSrc || v.src; v.removeAttribute("src"); v.load();
+    });
+    const show = (e: PageTransitionEvent) => {
+      if (!e.persisted) return;
+      document.querySelectorAll<HTMLVideoElement>("video[data-src]").forEach((v) => { v.src = v.dataset.src!; delete v.dataset.src; });
+    };
+    window.addEventListener("pagehide", hide);
+    window.addEventListener("pageshow", show);
+    return () => { window.removeEventListener("pagehide", hide); window.removeEventListener("pageshow", show); };
+  }, []);
+
   /* #websites etc. opens that tab */
   useEffect(() => {
     const fromHash = () => { const h = window.location.hash.slice(1); if (categories.some((c) => c.id === h)) setCat(h); };
