@@ -10,6 +10,10 @@ export const SITE = {
   contactEmail: "contact@siena-solutions.com",
   /** TODO: replace with SIENA's real number, in international format (used for the WhatsApp and Call buttons) */
   phone: "+964 000 000 0000",
+  /** TODO: city / address shown in the footer, e.g. "Erbil, Kurdistan Region – Iraq" (hidden while empty) */
+  location: "",
+  /** TODO: social profile links (each icon appears in the footer once its link is filled in) */
+  social: { instagram: "", linkedin: "", facebook: "", tiktok: "" },
   /** pre-filled first WhatsApp message */
   whatsappText: "Hello SIENA Solutions, I’d like to talk about a project.",
 };
