@@ -11,9 +11,9 @@ export const SITE = {
   /** international format; used for the WhatsApp and Call buttons */
   phone: "+964 750 971 4033",
   /** address shown in the footer; "\n" starts a new line (Arabic and Kurdish versions: content/locales/) */
-  location: "Naz Naz, Gulan Street\nErbil, Iraq",
+  location: "Naz Naz\nErbil, Iraq",
   /** the same address for search engines (schema.org PostalAddress) */
-  address: { streetAddress: "Naz Naz, Gulan Street", addressLocality: "Erbil", addressCountry: "IQ" },
+  address: { streetAddress: "Naz Naz", addressLocality: "Erbil", addressCountry: "IQ" },
   /** TODO: social profile links (each icon appears in the footer once its link is filled in) */
   social: { instagram: "", linkedin: "", facebook: "", tiktok: "" },
   /** pre-filled first WhatsApp message */

@@ -8,7 +8,7 @@ export const AR: Translation = {
   site: {
     description: "تصمّم SIENA Solutions وتطوّر التطبيقات والمواقع الإلكترونية ووكلاء الذكاء الاصطناعي والأتمتة وأنظمة الأعمال والتسويق للشركات النامية.",
     whatsappText: "مرحباً SIENA Solutions، أودّ التحدث عن مشروع.",
-    location: "ناز ناز، شارع گولان\nأربيل، العراق",
+    location: "ناز ناز\nأربيل، العراق",
   },
   reveal: {
     kicker1: "قرون من تطوّر الأعمال",
