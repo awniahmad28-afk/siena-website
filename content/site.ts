@@ -10,8 +10,10 @@ export const SITE = {
   contactEmail: "contact@siena-solutions.com",
   /** international format; used for the WhatsApp and Call buttons */
   phone: "+964 750 971 4033",
-  /** TODO: city / address shown in the footer, e.g. "Erbil, Kurdistan Region – Iraq" (hidden while empty) */
-  location: "",
+  /** address shown in the footer; "\n" starts a new line (Arabic and Kurdish versions: content/locales/) */
+  location: "Naz Naz, Gulan Street\nErbil, Iraq",
+  /** the same address for search engines (schema.org PostalAddress) */
+  address: { streetAddress: "Naz Naz, Gulan Street", addressLocality: "Erbil", addressCountry: "IQ" },
   /** TODO: social profile links (each icon appears in the footer once its link is filled in) */
   social: { instagram: "", linkedin: "", facebook: "", tiktok: "" },
   /** pre-filled first WhatsApp message */

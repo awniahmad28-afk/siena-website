@@ -24,7 +24,7 @@ function businessData(locale: Locale) {
     description: SITE.description,
     email: SITE.contactEmail,
     telephone: SITE.phone.replace(/\s/g, ""),
-    ...(SITE.location ? { address: SITE.location } : {}),
+    address: { "@type": "PostalAddress", ...SITE.address },
     ...(sameAs.length ? { sameAs } : {}),
     makesOffer: SERVICES.map((sv) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: sv.title } })),
   };

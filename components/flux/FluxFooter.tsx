@@ -42,7 +42,12 @@ export function FluxFooter({ s, page, locale = "en" }: { s: Record<string, strin
             <ul>
               <li><CopyEmail s={s} compact /></li>
               <li><a href={`https://wa.me/${digits}?text=${encodeURIComponent(SITE.whatsappText)}`} target="_blank" rel="noopener noreferrer">{f.whatsapp}</a></li>
-              {SITE.location && <li className={s.footPlain}>{SITE.location}</li>}
+              {SITE.location && (
+                <li className={`${s.footPlain} ${s.footLoc}`}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.3" /></svg>
+                  <address>{SITE.location.split("\n").map((line, i) => <span key={i}>{line}</span>)}</address>
+                </li>
+              )}
               <li><a className={s.footCta} href={`${home}#contact`}>{f.startLink}</a></li>
             </ul>
             {social.length > 0 && (

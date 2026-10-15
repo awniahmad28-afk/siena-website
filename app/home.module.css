@@ -362,6 +362,9 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 .footCols a { color: var(--muted); text-decoration: none; font-size: 0.92rem; transition: color 0.2s; overflow-wrap: anywhere; }
 .footCols a:hover { color: var(--ink); }
 .footPlain { color: var(--muted); font-size: 0.92rem; }
+.footLoc { display: flex; align-items: flex-start; gap: 8px; }
+.footLoc svg { flex: none; width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: var(--cyan); stroke-width: 1.7; stroke-linejoin: round; }
+.footLoc address { display: grid; gap: 2px; font-style: normal; line-height: 1.5; }
 .footCols a.footCta { color: var(--cyan); }
 .footCols a.footCta:hover { color: var(--ink); }
 .footSocial { margin-top: 18px !important; display: flex !important; gap: 10px !important; }

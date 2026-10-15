@@ -17,7 +17,7 @@ type ProjectText = { title?: string; client?: string; summary?: string };
 
 /** the shape of a translation (content/locales/*.ts) */
 export type Translation = {
-  site: { description: string; whatsappText: string };
+  site: { description: string; whatsappText: string; location: string };
   reveal: { kicker1: string; kicker2: string; lines: [string, string, string]; support: string; storyCta: string; storySecondary: string };
   about: { eyebrow: string; headline: string; paragraphs: string[]; services: { title: string; body: string }[] };
   whatHeadline: string;
