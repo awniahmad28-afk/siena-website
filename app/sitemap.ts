@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     PAGES.map((p) => ({
       url: url(code, p.path),
       changeFrequency: p.changeFrequency,
-      priority: code === "en" ? p.priority : p.priority * 0.9,
+      priority: code === "en" ? p.priority : Math.round(p.priority * 9) / 10,
       alternates: { languages: Object.fromEntries(LOCALE_LIST.map((l) => [LOCALES[l].lang, url(l, p.path)])) },
     })),
   );
