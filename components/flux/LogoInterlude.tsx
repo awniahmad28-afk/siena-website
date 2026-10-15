@@ -7,12 +7,13 @@ import l from "./interlude.module.css";
 export type InterludeVariant = "sweep" | "zoom" | "marquee" | "tilt" | "lockup";
 
 
-/** The official SIENA symbol with the pink tail laid over it (as in the header). Never redrawn. */
+/** The official SIENA symbol with the pink tail laid over it (as in the header). Never redrawn: this is the same symbol with
+ *  its faint baked-in glow faded out (it showed JPEG blocks on phones); a clean glow is drawn behind it in CSS. */
 function Mark({ className = "" }: { className?: string }) {
   return (
     <span className={`${l.mark} ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={asset("/brand/siena-symbol.webp")} width={600} height={600} alt="SIENA" />
+      <img src={asset("/brand/siena-symbol-mark.webp")} width={600} height={600} alt="SIENA" />
       <span className={l.tail} aria-hidden="true" />
       <span className={l.sheen} aria-hidden="true" />
     </span>
@@ -87,7 +88,7 @@ export function LogoInterlude({ variant }: { variant: InterludeVariant }) {
   const words = SERVICES.map((s) => s.title);
 
   return (
-    <section ref={root} id="interlude" className={l.root} data-variant={variant} aria-label="SIENA" style={{ "--sym": `url(${asset("/brand/siena-symbol.webp")})` } as CSSProperties}>
+    <section ref={root} id="interlude" className={l.root} data-variant={variant} aria-label="SIENA" style={{ "--sym": `url(${asset("/brand/siena-symbol-mark.webp")})` } as CSSProperties}>
       <div className={l.stage}>
         <span className={l.glow} aria-hidden="true" />
 

@@ -48,6 +48,30 @@ for (const [name, { region, widths }] of Object.entries(crops)) {
     await sharp(png).resize({ width: w }).webp({ quality: 90, alphaQuality: 90 }).toFile(`${OUT}/${name}${suffix}.webp`);
   }
 }
+// "siena-symbol-mark": the symbol with its faint baked-in glow faded out along smooth contours. That glow came from the
+// JPG master and shows compression blocks on phone screens when shown large; the page draws a clean glow behind it instead.
+// Only the faint haze changes: every pixel of the mark itself (alpha above 0.55) is kept exactly.
+{
+  const region = crops["siena-symbol"].region;
+  const { data, info } = await sharp(SRC).removeAlpha().extract(region).raw().toBuffer({ resolveWithObject: true });
+  const W = info.width, H = info.height, LO = 0.12, HI = 0.5;
+  const alpha = new Float32Array(W * H);
+  for (let i = 0, p = 0; i < data.length; i += 3, p++) alpha[p] = Math.max(0, Math.min(1, (Math.max(data[i], data[i + 1], data[i + 2]) - FIELD) / (255 - FIELD)));
+  const soft = await sharp(Buffer.from(alpha.map((a) => Math.round(a * 255))), { raw: { width: W, height: H, channels: 1 } }).blur(10).raw().toBuffer();
+  const out = Buffer.alloc(W * H * 4);
+  for (let i = 0, p = 0, j = 0; i < data.length; i += 3, p++, j += 4) {
+    const r = data[i], g = data[i + 1], b = data[i + 2], m = Math.max(r, g, b), a = alpha[p];
+    if (a <= 0) continue;
+    const t = Math.max(0, Math.min(1, (Math.max(a, soft[p] / 255) - LO) / (HI - LO)));
+    const keep = a > 0.55 ? 1 : t * t * (3 - 2 * t);
+    const k = 255 / m;
+    out[j] = Math.min(255, Math.round(r * k)); out[j + 1] = Math.min(255, Math.round(g * k)); out[j + 2] = Math.min(255, Math.round(b * k));
+    out[j + 3] = Math.round(a * keep * 255);
+  }
+  const png = await sharp(out, { raw: { width: W, height: H, channels: 4 } }).png().toBuffer();
+  await sharp(png).webp({ quality: 92, alphaQuality: 100 }).toFile(`${OUT}/siena-symbol-mark.webp`);
+  await sharp(png).avif({ quality: 80, effort: 6 }).toFile(`${OUT}/siena-symbol-mark.avif`);
+}
 // Favicon / app icon and social image keep the original dark field
 await sharp(SRC).extract(crops["siena-symbol"].region).resize(256).png().toFile("app/icon.png");
 await sharp(SRC).resize(1200, 630, { fit: "contain", background: "#03060e" }).jpeg({ quality: 85 }).toFile(`${OUT}/og.jpg`);
