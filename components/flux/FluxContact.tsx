@@ -12,27 +12,54 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
 
   const toggle = (t: string) => setAreas((a) => (a.includes(t) ? a.filter((x) => x !== t) : [...a, t]));
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+
+  /* the site is static, so the message is delivered by FormSubmit (formsubmit.co) straight to SIENA's inbox;
+     if that fails, it falls back to opening a pre-filled email in the visitor's mail app */
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
+    if (sending) return;
+    const form = e.currentTarget;
+    const f = new FormData(form);
     const name = String(f.get("name") || "").trim(), email = String(f.get("email") || "").trim();
     const company = String(f.get("company") || "").trim(), note = String(f.get("note") || "").trim();
+    if (String(f.get("_honey") || "")) return; /* spam bots fill the hidden field */
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Add your name and a valid email address."); return;
     }
     setError("");
-    const subject = `Build your AI system${company ? ` — ${company}` : ""}`;
+    const subject = `New enquiry from the website — ${name}${company ? `, ${company}` : ""}`;
     const lines = [`Name: ${name}`, `Email: ${email}`];
     if (company) lines.push(`Company: ${company}`);
     if (areas.length) lines.push(`Where systems feel fragmented: ${areas.join(", ")}`);
     if (note) lines.push("", note);
-    const body = lines.join("\n");
-    const steps = ["> packaging request", `> modules flagged: ${areas.length || "none yet"}`, "> opening your email app…"];
-    setLog([]);
-    steps.forEach((l, i) => window.setTimeout(() => setLog((x) => [...x, l]), 350 * (i + 1)));
-    window.setTimeout(() => {
-      window.location.href = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }, 350 * (steps.length + 1));
+
+    setSending(true);
+    setLog(["> packaging request", `> modules flagged: ${areas.length || "none yet"}`, "> transmitting…"]);
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${SITE.contactEmail}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: subject, _template: "table", _captcha: "false",
+          Name: name, Email: email, Company: company || "—",
+          "Where systems feel fragmented": areas.join(", ") || "—", Message: note || "—",
+          _replyto: email,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "failed");
+      setLog((x) => [...x, "> delivered ✓", "", "Thank you — we’ve received your message and will reply to " + email + " soon."]);
+      form.reset(); setAreas([]);
+    } catch {
+      setLog((x) => [...x, "> couldn’t send from here — opening your email app instead…"]);
+      const subj = `Build your AI system${company ? ` — ${company}` : ""}`;
+      window.setTimeout(() => {
+        window.location.href = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(lines.join("\n"))}`;
+      }, 600);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -62,6 +89,8 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
             <label className={s.field}><span>Name</span><input name="name" autoComplete="name" required /></label>
             <label className={s.field}><span>Company</span><input name="company" autoComplete="organization" /></label>
           </div>
+          {/* hidden from people; bots that fill it are ignored */}
+          <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
           <label className={s.field}><span>Email</span><input name="email" type="email" autoComplete="email" required /></label>
           <fieldset className={s.areas}>
             <legend>Where do your systems feel fragmented?</legend>
@@ -76,8 +105,8 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
           <label className={s.field}><span>Anything else? <em>(optional)</em></span><textarea name="note" rows={3} /></label>
           {error && <p className={s.error} role="alert">{error}</p>}
           <div className={s.termFoot}>
-            <button type="submit" className={s.btn} data-magnet="">{CONTACT.cta} →</button>
-            <p className={s.termNote}>Opens a pre-filled email in your mail app.</p>
+            <button type="submit" className={s.btn} data-magnet="" disabled={sending} aria-busy={sending}>{sending ? "Sending…" : `${CONTACT.cta} →`}</button>
+            <p className={s.termNote}>Goes straight to our team. We reply by email.</p>
           </div>
           {log.length > 0 && <pre className={s.log} aria-live="polite">{log.join("\n")}</pre>}
         </div>
