@@ -7,7 +7,7 @@ Things to do when the website goes live on the real domain. Tick them off as the
 - [x] Set `SITE.url` in `content/site.ts` to `https://siena-solutions.com` (it is `https://example.com` until launch).
 - [x] Remove the `/siena-website` base path from the GitHub Pages build (`NEXT_PUBLIC_BASE_PATH` in `.github/workflows/deploy-pages.yml`), since the site will live at the root of the domain.
 - [x] DNS for GitHub Pages: 4 A records (185.199.108–111.153) (Spaceship). The repo now lives at github.com/awniahmad28-afk/siena-website, so the www CNAME must point to awniahmad28-afk.github.io.
-- [ ] Add the custom domain again in GitHub → Settings → Pages, with DNS pointing to GitHub Pages, and turn on "Enforce HTTPS".
+- [x] Add the custom domain again in GitHub → Settings → Pages, with DNS pointing to GitHub Pages, and turn on "Enforce HTTPS".
 - [x] Location added to the footer (Naz Naz, Erbil, Iraq — in all three languages).
 - [ ] Link the footer address to the Google Maps listing once the Google Business Profile is verified (send the listing's Share link).
 - [ ] Add the social media links (`SITE.social`) — after launch.
