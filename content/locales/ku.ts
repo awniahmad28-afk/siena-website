@@ -264,7 +264,7 @@ export const KU: Translation = {
     language: "زمان",
     hero: {
       titleA: "زیرەکی،",
-      titleB: "پێکدێت.",
+      titleB: "شێوە دەگرێت.",
       cue: "بۆ دەستپێکردن بخزێنە",
       stages: ["ئاماژە", "پەیوەندی", "نەخشە", "زیرەکی"],
       meter: "کۆکردنەوەی زیرەکی",
