@@ -1,5 +1,7 @@
 # SIENA — The Evolution of Business Systems
 
+> **Launching?** Follow [LAUNCH.md](LAUNCH.md): domain, base path, location, social links, and the email (SPF / DKIM / DMARC) setup so replies don’t land in spam.
+
 Official homepage for **SIENA Solutions**.
 *One desk. One business. Centuries of evolution.*
 
