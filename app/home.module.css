@@ -516,3 +516,7 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
 :global([dir="rtl"]) .serviceN { font-size: 0.86rem; }
 :global([dir="rtl"]) .copyBtn { font-size: 0.84rem; }
 :global([dir="rtl"]) .legalDate { font-size: 0.86rem; }
+/* Arabic & Kurdish: taller letters need room — form labels get normal line height and space below them */
+:global([dir="rtl"]) .field > span, :global([dir="rtl"]) .areas legend { line-height: 1.6; }
+.areas legend { margin-bottom: 8px; padding: 0; }
+:global([dir="rtl"]) :is(.eyebrow, .kicker, .cue, .serviceN, .termNote, .menuKicker, .legalDate, .footCols h2, .footBar) { line-height: 1.6; }
