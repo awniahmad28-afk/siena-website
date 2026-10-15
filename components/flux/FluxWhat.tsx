@@ -1,6 +1,8 @@
 import type { CSSProperties, ReactNode } from "react";
 import { asset } from "@/lib/asset";
-import { ABOUT, STORY_FUNCTIONS, WHAT } from "@/content/site";
+import { STORY_FUNCTIONS, WHAT } from "@/content/site";
+import { getContent } from "@/content/index";
+import type { Locale } from "@/lib/i18n";
 
 /* pipeline geometry (viewBox 1200 × 300) */
 const IN_X = 150, CONNECT = { x: 430, y: 150 }, AUTOMATE = { x: 690, y: 150 }, CORE = { x: 950, y: 150 }, OUT_X = 1140;
@@ -8,7 +10,8 @@ const INPUTS = STORY_FUNCTIONS.map((f, i) => ({ ...f, y: 40 + i * 44 }));
 
 /** About SIENA: a short introduction, then a visual. `core` is that visual (the homepage passes the logo interlude, or null
  *  for none); when it is left out, the older previews get the system diagram and stage cards. */
-export function FluxWhat({ s, core }: { s: Record<string, string>; core?: ReactNode }) {
+export function FluxWhat({ s, core, locale = "en" }: { s: Record<string, string>; core?: ReactNode; locale?: Locale }) {
+  const ABOUT = getContent(locale).about;
   return (
     <section id="what" className={s.section} data-reveal="">
       <div className={s.about}>

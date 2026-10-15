@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 // Self-hosted variable fonts (no third-party requests at build or runtime)
 import "@fontsource-variable/sora/wght.css";
 import "@fontsource-variable/inter/wght.css";
+// Arabic-script fonts for the Arabic and Kurdish pages (they only download when Arabic letters are on screen)
+import "@fontsource-variable/noto-kufi-arabic/wght.css";
+import "@fontsource-variable/noto-sans-arabic/wght.css";
 import { SITE } from "@/content/site";
 import "./globals.css";
 import { asset } from "@/lib/asset";
@@ -24,7 +27,8 @@ export const viewport: Viewport = { themeColor: "#03060e", colorScheme: "dark", 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    /* lang/dir are rewritten to ar/rtl and ckb/rtl in the exported /ar/ and /ku/ pages (scripts/localize-html.mjs) */
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

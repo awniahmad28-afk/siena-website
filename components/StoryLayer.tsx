@@ -14,6 +14,8 @@ import { SienaReveal } from "./SienaReveal";
 import { BrandLogo } from "./BrandLogo";
 import { TailSymbol } from "./flux/TailSymbol";
 import { ERAS } from "@/content/eras";
+import { useContent, useLocale } from "@/components/LocaleProvider";
+import { LOCALES } from "@/lib/i18n";
 import { SOLUTIONS_ARRIVE_EVENT, STORY_HASH, STORY_OPEN_EVENT, STORY_OPENED_EVENT, type FnChip } from "@/lib/story";
 import { useChapterSettle } from "@/lib/useChapterSettle";
 import type { AvailablePlate } from "@/lib/plates.server";
@@ -30,6 +32,8 @@ function storyHash(hash: string): string | null {
 }
 
 export function StoryLayer({ plates }: { plates: AvailablePlate[] }) {
+  const st = useContent().ui.story;
+  const dir = LOCALES[useLocale()].dir;
   const [phase, setPhase] = useState<Phase>("closed");
   const [scroller, setScroller] = useState<HTMLDivElement | null>(null);
   const [api, setApi] = useState<TimelineApi | null>(null);
@@ -222,12 +226,13 @@ export function StoryLayer({ plates }: { plates: AvailablePlate[] }) {
   return (
     <div
       ref={layerRef}
+      dir="ltr" /* the cinematic frame keeps its composition; its text runs right-to-left via CSS on Arabic / Kurdish pages */
       className="story-layer"
       data-lenis-prevent=""
       data-phase={phase}
       role="dialog"
       aria-modal="true"
-      aria-label="The Evolution of Business Systems"
+      aria-label={st.aria}
       onClick={onStoryClick}
     >
       <div className="story-progress" aria-hidden="true">
@@ -235,18 +240,18 @@ export function StoryLayer({ plates }: { plates: AvailablePlate[] }) {
       </div>
       <div className="story-bar">
         {/* the logo closes the story and returns to the top of the homepage (Close keeps the visitor's place) */}
-        <button type="button" className="story-brand" onClick={() => close("#top")} aria-label="SIENA Solutions — back to the homepage">
+        <button type="button" className="story-brand" onClick={() => close("#top")} aria-label={st.brandBack}>
           <TailSymbol className="site-brand-symbol" sizes="40px" />
           <BrandLogo variant="wordmark" alt="" className="site-brand-word" sizes="120px" feather={false} />
         </button>
       </div>
       <div className="story-controls">
         <button type="button" className="story-skip" onClick={skipToAI} data-hidden={pastAI || !api ? "" : undefined} tabIndex={pastAI ? -1 : 0}>
-          Skip to AI <span aria-hidden="true">→</span>
+          {st.skip} <span aria-hidden="true">{dir === "rtl" ? "←" : "→"}</span>
         </button>
-        <button type="button" className="story-close" ref={closeBtn} onClick={() => close()} aria-label="Close the evolution story">
+        <button type="button" className="story-close" ref={closeBtn} onClick={() => close()} aria-label={st.closeStory}>
           <span aria-hidden="true">×</span>
-          <span className="story-close-label">Close</span>
+          <span className="story-close-label">{st.close}</span>
         </button>
       </div>
       <div className="story-scroll" ref={setScroller}>

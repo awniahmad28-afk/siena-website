@@ -256,8 +256,8 @@ export function buildEvolutionTimeline(root: HTMLElement, { lite = false, plateE
     if (y !== lastYear && yearEl) {
       lastYear = y;
       const early = y < 1500;
-      yearEl.textContent = early ? `c. ${y}` : y >= 2030 ? `${y}+` : String(y);
-      if (suffixEl) suffixEl.textContent = early ? "CE" : "";
+      yearEl.textContent = early ? `${(yearEl as HTMLElement).dataset.circa ?? "c."} ${y}` : y >= 2030 ? `${y}+` : String(y);
+      if (suffixEl) suffixEl.textContent = early ? (suffixEl as HTMLElement).dataset.ce ?? "CE" : "";
     }
     const t = tl.time();
     const active = CH.findIndex((c) => t >= c.start - 0.001 && t < c.end);

@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { asset } from "@/lib/asset";
-import { SERVICES } from "@/content/site";
+import { useContent } from "@/components/LocaleProvider";
 import l from "./interlude.module.css";
 
 export type InterludeVariant = "sweep" | "zoom" | "marquee" | "tilt" | "lockup";
 
-const LINE = "Built around your business.";
 
 /** The official SIENA symbol with the pink tail laid over it (as in the header). Never redrawn. */
 function Mark({ className = "" }: { className?: string }) {
@@ -26,6 +25,8 @@ function Mark({ className = "" }: { className?: string }) {
  * tilt (the S tilts toward your cursor), lockup (the full logo wipes in).
  */
 export function LogoInterlude({ variant }: { variant: InterludeVariant }) {
+  const { services: SERVICES, ui } = useContent();
+  const LINE = ui.interlude;
   const root = useRef<HTMLElement>(null);
 
   useEffect(() => {

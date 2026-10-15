@@ -1,7 +1,7 @@
 import { FooterReveal } from "./FooterReveal";
 import { CopyEmail } from "./CopyEmail";
-import { SERVICES, SITE } from "@/content/site";
-import { asset } from "@/lib/asset";
+import { getContent } from "@/content/index";
+import { href, type Locale } from "@/lib/i18n";
 
 /* simple line icons for the social links (shown only once a link is set in content/site.ts) */
 const ICONS: Record<string, { label: string; d: string }> = {
@@ -12,39 +12,41 @@ const ICONS: Record<string, { label: string; d: string }> = {
 };
 
 /** Footer: the logo reveal, then Company, Services and Contact (email, WhatsApp, location and social links when set). */
-export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "work" | "other" }) {
-  const home = page ? asset("/") : "";
+export function FluxFooter({ s, page, locale = "en" }: { s: Record<string, string>; page?: "work" | "privacy" | "other"; locale?: Locale }) {
+  const { site: SITE, services: SERVICES, ui } = getContent(locale);
+  const f = ui.footer;
+  const home = page ? href(locale, "/") : "";
   const digits = SITE.phone.replace(/\D/g, "");
   const social = Object.entries(SITE.social).filter(([, url]) => url);
   return (
     <footer className={s.footer}>
       <div className={s.footTop}>
         <FooterReveal className={s.footBrand} emClass={s.footEm} />
-        <nav className={s.footCols} aria-label="Footer">
+        <nav className={s.footCols} aria-label={f.company}>
           <div>
-            <h2>Company</h2>
+            <h2>{f.company}</h2>
             <ul>
-              <li><a href={`${home}#what`}>About SIENA</a></li>
-              <li><a href={asset("/work/")}>Our Work</a></li>
-              <li><a href={`${home}#why`}>Why SIENA</a></li>
+              <li><a href={`${home}#what`}>{f.about}</a></li>
+              <li><a href={href(locale, "/work/")}>{f.work}</a></li>
+              <li><a href={`${home}#why`}>{f.why}</a></li>
             </ul>
           </div>
           <div>
-            <h2>Services</h2>
+            <h2>{f.services}</h2>
             <ul>
               {SERVICES.map((it) => <li key={it.id}><a href={`${home}#solution-${it.id}`}>{it.title}</a></li>)}
             </ul>
           </div>
           <div>
-            <h2>Contact</h2>
+            <h2>{f.contact}</h2>
             <ul>
               <li><CopyEmail s={s} compact /></li>
-              <li><a href={`https://wa.me/${digits}?text=${encodeURIComponent(SITE.whatsappText)}`} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href={`https://wa.me/${digits}?text=${encodeURIComponent(SITE.whatsappText)}`} target="_blank" rel="noopener noreferrer">{f.whatsapp}</a></li>
               {SITE.location && <li className={s.footPlain}>{SITE.location}</li>}
-              <li><a className={s.footCta} href={`${home}#contact`}>Start a project →</a></li>
+              <li><a className={s.footCta} href={`${home}#contact`}>{f.startLink}</a></li>
             </ul>
             {social.length > 0 && (
-              <ul className={s.footSocial} aria-label="Social media">
+              <ul className={s.footSocial} aria-label={f.social}>
                 {social.map(([k, url]) => (
                   <li key={k}>
                     <a href={url} target="_blank" rel="noopener noreferrer" aria-label={ICONS[k]?.label ?? k}>
@@ -60,8 +62,8 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
       <div className={s.footBar}>
         <span>© {new Date().getFullYear()} {SITE.name} {SITE.tagline}</span>
         <span className={s.footBarLinks}>
-          <a href={asset("/privacy/")}>Privacy</a>
-          <a href="#top">Back to top ↑</a>
+          <a href={href(locale, "/privacy/")}>{f.privacy}</a>
+          <a href="#top">{f.backTop}</a>
         </span>
       </div>
     </footer>

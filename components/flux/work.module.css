@@ -13,7 +13,7 @@
 }
 .chip:hover { color: var(--ink); border-color: rgba(51, 225, 255, 0.45); }
 .chip[aria-selected="true"] { color: #001018; background: var(--cyan); border-color: var(--cyan); }
-.count { margin-left: 8px; padding: 2px 6px; border-radius: 999px; background: rgba(51, 225, 255, 0.14); color: var(--cyan); font-size: 0.6rem; }
+.count { margin-inline-start: 8px; padding: 2px 6px; border-radius: 999px; background: rgba(51, 225, 255, 0.14); color: var(--cyan); font-size: 0.6rem; }
 .chip[aria-selected="true"] .count { background: rgba(0, 16, 24, 0.18); color: #001018; }
 
 /* gallery */
@@ -66,12 +66,12 @@
 .lbFigure[data-tall] { width: min(100%, 1100px); max-height: calc(100svh - 140px); overflow-y: auto; border-radius: 12px; overscroll-behavior: contain; }
 .lbFigure[data-tall] img { width: 100%; max-height: none; border-radius: 0; }
 .lbTop { position: absolute; top: 22px; left: clamp(16px, 3vw, 32px); right: 140px; display: flex; gap: 16px; align-items: baseline; color: #b9c4d8; font-size: 0.95rem; }
-.lbTop strong { color: var(--ink); font-weight: 600; margin-right: 6px; }
-.lbCount { margin-left: auto; font: 500 0.68rem/1 var(--mono); letter-spacing: 0.14em; color: var(--muted); }
+.lbTop strong { color: var(--ink); font-weight: 600; margin-inline-end: 6px; }
+.lbCount { margin-inline-start: auto; font: 500 0.68rem/1 var(--mono); letter-spacing: 0.14em; color: var(--muted); }
 .lbNav, .lbClose { position: absolute; border: 1px solid var(--line); background: rgba(6, 12, 26, 0.7); color: var(--ink); cursor: pointer; font: 500 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; }
 .lbNav { top: 50%; translate: 0 -50%; width: 46px; height: 46px; border-radius: 50%; font-size: 1.1rem; }
-.lbPrev { left: clamp(10px, 2vw, 28px); }
-.lbNext { right: clamp(10px, 2vw, 28px); }
+.lbPrev { inset-inline-start: clamp(10px, 2vw, 28px); }
+.lbNext { inset-inline-end: clamp(10px, 2vw, 28px); }
 .lbClose { top: 18px; right: 18px; padding: 10px 14px; border-radius: 999px; }
 .lbNav:hover, .lbClose:hover { border-color: var(--cyan); color: var(--cyan); }
 
@@ -88,3 +88,12 @@
 .toggle:hover { background: rgba(51, 225, 255, 0.14); border-color: var(--cyan); }
 .toggle span { color: var(--cyan); transition: translate 0.25s; }
 .toggle:hover span { translate: 3px 0; }
+
+/* Arabic & Kurdish: small labels are a little larger (Arabic letters need more size than Latin capitals to stay readable) */
+:global([dir="rtl"]) .eyebrow { font-size: 0.86rem; }
+:global([dir="rtl"]) .chip { font-size: 0.84rem; }
+:global([dir="rtl"]) .stat { font-size: 0.8rem; }
+:global([dir="rtl"]) .lbCount { font-size: 0.82rem; }
+:global([dir="rtl"]) .lbNav, :global([dir="rtl"]) .lbClose { font-size: 0.9rem; }
+:global([dir="rtl"]) .meta { font-size: 0.8rem; }
+:global([dir="rtl"]) .toggle { font-size: 0.86rem; }

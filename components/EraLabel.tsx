@@ -1,8 +1,11 @@
+"use client";
 /** EraLabel — year · era name · one powerful sentence · keywords. Real HTML, always. */
 import type { Era } from "@/content/eras";
+import { useContent } from "@/components/LocaleProvider";
 
 export function EraLabel({ era, as = "stage" }: { era: Era; as?: "stage" | "chronicle" }) {
   const pos = era.copy ?? "left";
+  const { ui } = useContent();
   return (
     <article className={`era-label era-label--${as} era-label--${pos}`} data-copy={era.id} aria-labelledby={`${as}-${era.id}-title`}>
       <h2 className="era-title" id={`${as}-${era.id}-title`}>
@@ -24,7 +27,7 @@ export function EraLabel({ era, as = "stage" }: { era: Era; as?: "stage" | "chro
           {era.lead}
         </p>
       )}
-      <ul className="era-keywords" aria-label="Key concepts">
+      <ul className="era-keywords" aria-label={ui.story.keyConcepts}>
         {era.keywords.map((k) => (
           <li key={k} data-kw>
             {k}

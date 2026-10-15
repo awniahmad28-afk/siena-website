@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { SERVICES, SOLUTIONS } from "@/content/site";
+import { SERVICES } from "@/content/site";
+import { useContent } from "@/components/LocaleProvider";
 import t from "./tide.module.css";
 
 const ITEMS = SERVICES;
@@ -12,6 +13,8 @@ const N = ITEMS.length;
  * The chosen solution's full description is a normal article on the right that you scroll to read.
  */
 export function SolutionsTide() {
+  const { services: ITEMS_T, solutions: SOLUTIONS, ui } = useContent();
+  const tt = ui.tide;
   const section = useRef<HTMLElement>(null);
   const wheel = useRef<HTMLDivElement>(null);
   const items = useRef<(HTMLButtonElement | null)[]>([]);
@@ -135,7 +138,7 @@ export function SolutionsTide() {
     return () => window.removeEventListener("hashchange", fromHash);
   }, []);
 
-  const it = ITEMS[sel];
+  const it = ITEMS_T[sel];
 
   return (
     <section ref={section} id="solutions" className={t.root} aria-label={SOLUTIONS.eyebrow}>
@@ -148,8 +151,8 @@ export function SolutionsTide() {
 
       <div className={t.layout}>
         <div className={t.side}>
-          <div ref={wheel} className={t.wheel} data-lenis-prevent="" role="tablist" aria-label="Solutions" aria-orientation="vertical" onKeyDown={onKey}>
-            {ITEMS.map((m, i) => (
+          <div ref={wheel} className={t.wheel} data-lenis-prevent="" role="tablist" aria-label={tt.aria} aria-orientation="vertical" onKeyDown={onKey}>
+            {ITEMS_T.map((m, i) => (
               <button
                 key={m.id}
                 ref={(el) => { items.current[i] = el; }}
@@ -167,11 +170,11 @@ export function SolutionsTide() {
               </button>
             ))}
           </div>
-          <p className={t.hint} aria-hidden="true"><span className={t.hintDesk}>Scroll the wheel to explore</span><span className={t.hintMob}>Swipe the wheel</span></p>
+          <p className={t.hint} aria-hidden="true"><span className={t.hintDesk}>{tt.hintDesk}</span><span className={t.hintMob}>{tt.hintMob}</span></p>
         </div>
 
         <article id="tide-article" role="tabpanel" aria-labelledby={`tide-tab-${it.id}`} className={t.article} key={it.id}>
-          <p className={t.kicker}>Solution {String(sel + 1).padStart(2, "0")}</p>
+          <p className={t.kicker}>{tt.solution} {String(sel + 1).padStart(2, "0")}</p>
           <h3 className={t.articleTitle}>{it.title}</h3>
           <p className={t.lead}>{it.body}</p>
           {it.overview.map((p) => <p key={p} className={t.para}>{p}</p>)}

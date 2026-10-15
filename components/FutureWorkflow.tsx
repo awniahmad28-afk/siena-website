@@ -4,11 +4,12 @@
  * a pulse travels it and each step lights in turn. Human review points are explicit.
  */
 import { FLOW_NODES, THREAD_PATHS } from "@/lib/geometry";
-import { WORKFLOW_STEPS } from "@/content/eras";
+import { useContent } from "@/components/LocaleProvider";
 
 const HUMAN_REVIEW = new Set([4, 7]);
 
 export function FutureWorkflow() {
+  const { workflowSteps: WORKFLOW_STEPS, ui } = useContent();
   return (
     <g data-flow>
       <path d={THREAD_PATHS.flow} fill="none" stroke="#1f3f86" strokeWidth="1" strokeDasharray="3 6" opacity="0.6" />
@@ -30,7 +31,7 @@ export function FutureWorkflow() {
                 <circle cx="-44" cy="-3" r="4" fill="#cfe0ff" />
                 <path d="M-51 7 Q-44 -1 -37 7 Z" fill="#cfe0ff" />
                 <text x="6" y="4" textAnchor="middle" fontSize="10.5" letterSpacing="0.08em" fill="#cfe0ff" fontFamily="var(--font-text), sans-serif">
-                  {i === 7 ? "Human decides" : "Human reviews"}
+                  {i === 7 ? ui.story.humanDecides : ui.story.humanReviews}
                 </text>
               </g>
             )}

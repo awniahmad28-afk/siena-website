@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { TailLockup } from "./TailLockup";
+import { useContent } from "@/components/LocaleProvider";
 import r from "./footReveal.module.css";
 
 /**
@@ -9,6 +10,7 @@ import r from "./footReveal.module.css";
  */
 export function FooterReveal({ className = "", emClass = "" }: { className?: string; emClass?: string }) {
   const root = useRef<HTMLDivElement>(null);
+  const { hero } = useContent().ui;
   useEffect(() => {
     const el = root.current!;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.dataset.in = ""; return; }
@@ -25,8 +27,8 @@ export function FooterReveal({ className = "", emClass = "" }: { className?: str
         <TailLockup alt="SIENA Solutions" sizes="400px" />
       </span>
       <p className={r.line}>
-        <span>From scattered data </span>
-        <em className={emClass}>to one intelligence.</em>
+        <span>{hero.outroA} </span>
+        <em className={emClass}>{hero.outroB}</em>
       </p>
     </div>
   );

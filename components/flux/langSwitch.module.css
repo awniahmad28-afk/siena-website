@@ -1,0 +1,29 @@
+/* language switcher — header button + list, and the inline row in the phone menu */
+.root { position: relative; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 12px; cursor: pointer;
+  background: rgba(51, 225, 255, 0.05); border: 1px solid var(--line); color: var(--ink);
+  font: 500 0.72rem/1 var(--mono); letter-spacing: 0.12em; transition: border-color 0.2s, background 0.2s;
+}
+.btn:hover, .btn[aria-expanded="true"] { border-color: var(--cyan); background: rgba(51, 225, 255, 0.12); }
+.btn svg { width: 16px; height: 16px; fill: none; stroke: var(--cyan); stroke-width: 1.6; }
+.btn span:lang(ar), .btn span:lang(ckb) { font-family: var(--arabic); font-size: 0.95rem; letter-spacing: 0; }
+.list {
+  position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 5; display: grid; min-width: 150px; padding: 6px;
+  background: rgba(5, 9, 20, 0.97); border: 1px solid var(--line); box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); animation: langIn 0.2s ease both;
+}
+@keyframes langIn { from { opacity: 0; translate: 0 -6px; } }
+.opt {
+  display: block; padding: 10px 12px; color: var(--muted) !important; text-decoration: none; text-transform: none;
+  font: 500 0.9rem/1.2 "Inter Variable", var(--arabic); letter-spacing: 0;
+}
+.opt:lang(ar), .opt:lang(ckb) { font-family: var(--arabic); font-size: 1rem; }
+.opt:hover { color: var(--ink) !important; background: rgba(51, 225, 255, 0.08); }
+.opt[aria-current] { color: var(--cyan) !important; }
+.opt[aria-current]::after { content: " ✓"; }
+
+.inline { display: flex; flex-wrap: wrap; gap: 8px; }
+.inline .opt { padding: 9px 14px; border: 1px solid var(--line); }
+.inline .opt[aria-current] { border-color: var(--cyan); }
+.inline .opt[aria-current]::after { content: none; }

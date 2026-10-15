@@ -5,7 +5,8 @@
  * Chronicle mode (mobile / portrait tablet / reduced motion): the same eras as a linear story with static vignettes.
  */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ERAS, totalWeight } from "@/content/eras";
+import { totalWeight } from "@/content/eras";
+import { useContent } from "@/components/LocaleProvider";
 import { registerGsap, gsap, ScrollTrigger } from "@/lib/gsap";
 import { CINEMATIC_QUERY, LITE_QUERY, REDUCED_QUERY } from "@/lib/mode";
 import { buildEvolutionTimeline, chapters } from "@/lib/choreography";
@@ -49,6 +50,7 @@ export function EvolutionTimeline({
   scroller?: HTMLElement | null;
   onApi?: (api: TimelineApi) => void;
 }) {
+  const { eras: ERAS, ui } = useContent();
   const mode = useMode();
   const trackRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<{ total: number } | null>(null);
@@ -137,7 +139,7 @@ export function EvolutionTimeline({
   return (
     <section id="evolution" className="evo" aria-labelledby="evo-heading" data-mode={mode ?? "pending"}>
       <h2 id="evo-heading" className="sr-only">
-        The evolution of business systems, from Abbasid-era commerce to the autonomous business
+        {ui.story.heading}
       </h2>
 
       {/* ───── cinematic ───── */}

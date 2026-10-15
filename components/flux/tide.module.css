@@ -76,3 +76,19 @@
 @media (prefers-reduced-motion: reduce) {
   .water span, .wheel::before, .article { animation: none !important; }
 }
+
+/* Arabic & Kurdish: the wheel hangs from the right edge and curves the other way */
+:global([dir="rtl"]) .item {
+  left: auto; right: 0; text-align: right; transform-origin: 100% 50%;
+  transform: translate(calc(var(--d2) * 9px), calc(var(--d) * 74px)) scale(calc(1 - min(var(--ad), 3) * 0.1));
+}
+:global([dir="rtl"]) .wheel::before { left: 6%; right: -24px; background: radial-gradient(60% 100% at 70% 50%, rgba(51, 225, 255, 0.18), transparent 75%); }
+@media (max-width: 860px) {
+  :global([dir="rtl"]) .item { transform: translate(calc(var(--d2) * 6px), calc(var(--d) * 42px)) scale(calc(1 - min(var(--ad), 3) * 0.12)); }
+}
+
+/* Arabic & Kurdish: small labels are a little larger (Arabic letters need more size than Latin capitals to stay readable) */
+:global([dir="rtl"]) .eyebrow { font-size: 0.86rem; }
+:global([dir="rtl"]) .itemN { font-size: 0.86rem; }
+:global([dir="rtl"]) .hint { font-size: 0.82rem; }
+:global([dir="rtl"]) .kicker { font-size: 0.89rem; }

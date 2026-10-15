@@ -2,8 +2,9 @@
    SIENA — design tokens
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  --font-display: "Sora Variable";
-  --font-text: "Inter Variable";
+  --font-display: "Sora Variable", "Noto Kufi Arabic Variable";
+  --font-text: "Inter Variable", "Noto Sans Arabic Variable";
+  --arabic: "Noto Sans Arabic Variable", "Noto Kufi Arabic Variable", sans-serif;
   --bg: #03060e;
   --bg-2: #050b1a;
   --navy: #07112a;
@@ -836,3 +837,24 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
 @keyframes soft-breathe { from { opacity: 0.7; } to { opacity: 1; } }
 .what-pillars li.what-step { align-content: start; }
 .what { overflow-x: clip; }
+
+/* ═══ Arabic & Kurdish pages (right-to-left) ═══════════════════════
+   Arabic script joins its letters, so letter-spacing would break the words apart; headings need more line height. */
+[dir="rtl"], [dir="rtl"] *, [dir="rtl"] *::before, [dir="rtl"] *::after { letter-spacing: 0 !important; }
+[dir="rtl"] :is(h1, h2, h3) { line-height: 1.25; }
+
+/* Arabic & Kurdish: small labels are a little larger (Arabic letters need more size than Latin capitals to stay readable) */
+[dir="rtl"] .era-label--bottom .era-keywords li { font-size: 0.8rem; }
+[dir="rtl"] .era-name { font-size: 0.94rem; }
+[dir="rtl"] .era-keywords li { font-size: 0.82rem; }
+[dir="rtl"] .progress-rail button { font-size: 0.8rem; }
+[dir="rtl"] .era-label--stage .era-years { font-size: 0.86rem; }
+[dir="rtl"] .era-label--stage .era-name { font-size: 0.82rem; }
+[dir="rtl"] .era-label--stage .era-keywords li { font-size: 0.8rem; }
+[dir="rtl"] .eyebrow { font-size: 0.89rem; }
+[dir="rtl"] .story-close { font-size: 0.84rem; }
+[dir="rtl"] .story-skip { font-size: 0.8rem; }
+[dir="rtl"] .reveal-secondary { font-size: 0.84rem; }
+
+/* Evolution story on Arabic / Kurdish pages: same composition, text right-to-left */
+:is([lang="ar"], [lang="ckb"]) .story-layer :is(.era-label, .reveal-stage, .progress-label, .story-skip, .story-close-label, .evo-copy, .chronicle-era) { direction: rtl; }

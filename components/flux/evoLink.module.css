@@ -55,3 +55,12 @@
   .line b { width: 64px; }
 }
 @media (prefers-reduced-motion: reduce) { .dot, .arc, .line em { animation: none !important; } }
+
+/* Arabic & Kurdish: small labels are a little larger (Arabic letters need more size than Latin capitals to stay readable) */
+:global([dir="rtl"]) .btn { font-size: 0.84rem; }
+:global([dir="rtl"]) .line { font-size: 0.8rem; }
+:global([dir="rtl"]) .small { font-size: 0.8rem; }
+:global([dir="rtl"]) .markText { font-size: 0.82rem; }
+:global([dir="rtl"]) .markText small { font-size: 0.8rem; }
+:global([dir="rtl"]) .label { text-align: left; }
+:global([dir="rtl"]) .markText { text-align: right; }

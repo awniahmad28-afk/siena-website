@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import type { WorkCategory, WorkMedia } from "@/lib/work.server";
 import w from "./work.module.css";
+import { useContent, useLocale } from "@/components/LocaleProvider";
+import { LOCALES } from "@/lib/i18n";
 
 type Viewer = { items: WorkMedia[]; index: number; title?: string };
 
@@ -41,10 +43,12 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
 
   const choose = (id: string) => { setCat(id); setViewer(null); history.replaceState(null, "", `#${id}`); };
   const count = (c: WorkCategory) => c.projects.length + c.items.length;
+  const ui = useContent().ui.work;
+  const arrow = LOCALES[useLocale()].dir === "rtl" ? "←" : "→";
 
   return (
     <>
-      <div className={w.filters} role="tablist" aria-label="Work by service">
+      <div className={w.filters} role="tablist" aria-label={ui.byService}>
         {categories.map((c) => (
           <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} className={w.chip} onClick={() => choose(c.id)}>
             {c.title}{count(c) > 0 && <span className={w.count}>{count(c)}</span>}
@@ -63,11 +67,10 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
                   <h2 className={w.projectTitle}>{p.title}</h2>
                   {p.summary && <p className={w.summary}>{p.summary}</p>}
                   <button type="button" className={w.toggle} onClick={() => setViewer({ items: p.items, index: 0, title: p.title })}>
-                    View project <span aria-hidden="true">→</span>
+                    {ui.view} <span aria-hidden="true">{arrow}</span>
                   </button>
                   <p className={w.stat}>
-                    {p.items.filter((m) => m.type === "image").length} pictures
-                    {(() => { const v = p.items.filter((m) => m.type === "video").length; return v ? ` · ${v} video${v > 1 ? "s" : ""}` : ""; })()}
+                    {ui.stat(p.items.filter((m) => m.type === "image").length, p.items.filter((m) => m.type === "video").length)}
                   </p>
                 </div>
               </li>
@@ -79,7 +82,7 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
           <ul className={w.gallery}>
             {current.items.map((m, i) => (
               <li key={m.src} className={w.item} style={{ "--i": i } as CSSProperties}>
-                <button type="button" className={w.open} onClick={() => setViewer({ items: current.items, index: i })} aria-label={`Open ${m.caption || m.type}`}>
+                <button type="button" className={w.open} onClick={() => setViewer({ items: current.items, index: i })} aria-label={ui.open(m.caption || m.type)}>
                   <Media m={m} grid />
                   {m.type === "video" && <span className={w.play} aria-hidden="true">▶</span>}
                 </button>
@@ -104,13 +107,14 @@ export function WorkGallery({ categories, empty }: { categories: WorkCategory[];
 
 /** project card picture: the cover, with the project video playing over it while hovered (always on touch screens) */
 function ProjectCover({ cover, video, title, onOpen }: { cover?: WorkMedia; video?: WorkMedia; title: string; onOpen: () => void }) {
+  const ui = useContent().ui.work;
   const vid = useRef<HTMLVideoElement>(null);
   const [touch, setTouch] = useState(false);
   useEffect(() => { setTouch(!window.matchMedia("(hover: hover)").matches); }, []);
   const play = () => { vid.current?.play().catch(() => {}); };
   const stop = () => { if (vid.current && !touch) { vid.current.pause(); vid.current.currentTime = 0; } };
   return (
-    <button type="button" className={w.cover} onClick={onOpen} onMouseEnter={play} onMouseLeave={stop} aria-label={`Open ${title}`}>
+    <button type="button" className={w.cover} onClick={onOpen} onMouseEnter={play} onMouseLeave={stop} aria-label={ui.open(title)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       {cover && <img src={cover.src} alt={`${title} — ${cover.caption}`} loading="lazy" />}
       {video && (
@@ -142,18 +146,21 @@ function Media({ m, grid = false, onTall }: { m: WorkMedia; grid?: boolean; onTa
 
 function Lightbox({ viewer, onIndex, onClose }: { viewer: Viewer; onIndex: (i: number) => void; onClose: () => void }) {
   const { items, index, title } = viewer;
+  const { ui: all } = useContent();
+  const ui = all.work;
+  const rtl = LOCALES[useLocale()].dir === "rtl";
   const [tall, setTall] = useState(false);
   const go = useCallback((d: number) => { setTall(false); onIndex((index + d + items.length) % items.length); }, [index, items.length, onIndex]);
   useEffect(() => {
-    const key = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); };
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); if (e.key === "ArrowRight") go(rtl ? -1 : 1); if (e.key === "ArrowLeft") go(rtl ? 1 : -1); };
     document.addEventListener("keydown", key);
     const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     return () => { document.removeEventListener("keydown", key); document.documentElement.style.overflow = prev; };
-  }, [go, onClose]);
+  }, [go, onClose, rtl]);
   const m = items[index];
   return (
-    <div className={w.lightbox} role="dialog" aria-modal="true" aria-label={title ?? m.caption ?? "Project media"} onClick={onClose} data-lenis-prevent="">
+    <div className={w.lightbox} role="dialog" aria-modal="true" aria-label={title ?? m.caption ?? ui.media} onClick={onClose} data-lenis-prevent="">
       <div className={w.lbTop}>
         <span>{title && <strong>{title}</strong>} {m.caption}</span>
         <span className={w.lbCount}>{index + 1} / {items.length}</span>
@@ -164,11 +171,11 @@ function Lightbox({ viewer, onIndex, onClose }: { viewer: Viewer; onIndex: (i: n
       </figure>
       {items.length > 1 && (
         <>
-          <button type="button" className={`${w.lbNav} ${w.lbPrev}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Previous">←</button>
-          <button type="button" className={`${w.lbNav} ${w.lbNext}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label="Next">→</button>
+          <button type="button" className={`${w.lbNav} ${w.lbPrev}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label={ui.prev}>{rtl ? "→" : "←"}</button>
+          <button type="button" className={`${w.lbNav} ${w.lbNext}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label={ui.next}>{rtl ? "←" : "→"}</button>
         </>
       )}
-      <button type="button" className={w.lbClose} onClick={onClose} aria-label="Close">Close ✕</button>
+      <button type="button" className={w.lbClose} onClick={onClose} aria-label={all.close}>{ui.close}</button>
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import "server-only";
 import { existsSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
-import { SERVICES } from "@/content/site";
-import { PROJECTS } from "@/content/work";
+import { getContent } from "@/content/index";
+import { CAPTIONS } from "@/content/locales/captions";
 import { asset } from "@/lib/asset";
+import type { Locale } from "@/lib/i18n";
 
 export type WorkMedia = { type: "image" | "video"; src: string; caption: string; poster?: string };
 export type WorkProject = { id: string; title: string; client?: string; summary?: string; cover?: WorkMedia; video?: WorkMedia; items: WorkMedia[] };
@@ -14,9 +15,13 @@ const VIDEO = /\.(mp4|webm|mov)$/i;
 const base = (f: string) => f.replace(/\.[^.]+$/, "");
 const byName = (a: string, b: string) => a.localeCompare(b, undefined, { numeric: true });
 
-/** "01-bloom-salon-booking.jpg" → "Bloom salon booking" */
+let lang: Locale = "en";
+
+/** "01-bloom-salon-booking.jpg" → "Bloom salon booking" (or its Arabic / Kurdish caption from content/locales/captions.ts) */
 function caption(file: string) {
-  const name = base(file).replace(/^\d+[-_ ]*/, "").replace(/[-_]+/g, " ").trim();
+  const slug = base(file).replace(/^\d+[-_ ]*/, "").toLowerCase();
+  if (lang !== "en" && CAPTIONS[slug]) return CAPTIONS[slug][lang];
+  const name = slug.replace(/[-_]+/g, " ").trim();
   return name ? name.charAt(0).toUpperCase() + name.slice(1) : "";
 }
 
@@ -38,9 +43,11 @@ function media(dir: string, url: string): WorkMedia[] {
  * Reads public/work/<service id>/ at build time. Pictures and videos directly in the folder are shown as a gallery;
  * each sub-folder is a project (its first picture is the cover, its first video plays on the card).
  */
-export function getWork(): WorkCategory[] {
+export function getWork(locale: Locale = "en"): WorkCategory[] {
+  lang = locale;
+  const { services, projects: PROJECTS } = getContent(locale);
   const root = path.join(process.cwd(), "public", "work");
-  return SERVICES.map((sv) => {
+  return services.map((sv) => {
     const dir = path.join(root, sv.id);
     if (!existsSync(dir)) return { id: sv.id, title: sv.title, projects: [], items: [] };
     const projects = readdirSync(dir)

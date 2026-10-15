@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { SERVICES } from "@/content/site";
+import { useContent } from "@/components/LocaleProvider";
 import { asset } from "@/lib/asset";
 import { LOCKUP, SIENA_BLADE_LOWER, SIENA_BLADE_UPPER, SIENA_S_THREAD } from "@/lib/geometry";
 import g from "./genesis.module.css";
@@ -56,6 +57,8 @@ export function Genesis({
   /** pinned to the top-right corner of the hero for the whole scroll (e.g. the Evolution button) */
   corner?: ReactNode;
 }) {
+  const { services: ITEMS_T, ui } = useContent();
+  const hero = ui.hero;
   const track = useRef<HTMLElement>(null);
   const stageEl = useRef<HTMLDivElement>(null);
   const canvasEl = useRef<HTMLCanvasElement>(null);
@@ -401,13 +404,13 @@ export function Genesis({
           {stages.map((t, i) => <li key={t} data-i={i}><span>0{i + 1}</span>{t}</li>)}
         </ol>
         <p className={g.meter} aria-hidden="true">
-          <span>Assembling intelligence <b data-pct>00</b>%</span>
+          <span>{hero.meter} <b data-pct>00</b>%</span>
           <span className={g.meterBar}><i /></span>
         </p>
-        <p className={g.hint} aria-hidden="true">Move to disturb the network · click to send a pulse</p>
+        <p className={g.hint} aria-hidden="true">{hero.hint}</p>
 
         <div className={g.orbit}>
-          {ITEMS.map((it, i) => (
+          {ITEMS_T.map((it, i) => (
             <button
               key={it.id}
               ref={(el) => { chips.current[i] = el; }}
@@ -429,9 +432,9 @@ export function Genesis({
           {open === null ? (
             <>
               {outro}
-              <p className={g.outroHint}><span className={g.hintDesk}>Select a module orbiting SIENA to watch it run.</span><span className={g.hintMob}>Tap a module to watch it run.</span></p>
+              <p className={g.outroHint}><span className={g.hintDesk}>{hero.hintDesk}</span><span className={g.hintMob}>{hero.hintMob}</span></p>
               <div className={g.chipRow}>
-                {ITEMS.map((it, i) => (
+                {ITEMS_T.map((it, i) => (
                   <button key={it.id} type="button" className={g.chip} onClick={() => setOpen(i)}>
                     <span className={g.chipDot} />{it.title}
                   </button>
@@ -448,10 +451,12 @@ export function Genesis({
 }
 
 function RunPanel({ index, onClose, onNext }: { index: number; onClose: () => void; onNext: () => void }) {
-  const it = ITEMS[index];
+  const { services, ui } = useContent();
+  const it = services[index];
+  const hero = ui.hero;
   return (
-    <div className={g.panel} role="region" aria-live="polite" aria-label={`${it.title} workflow`} key={it.id}>
-      <p className={g.panelStatus}><span className={g.live} /> Running · {it.title.toLowerCase()} workflow</p>
+    <div className={g.panel} role="region" aria-live="polite" aria-label={hero.workflowLabel(it.title)} key={it.id}>
+      <p className={g.panelStatus}><span className={g.live} /> {hero.running(it.title)}</p>
       <h2 className={g.panelTitle}>{it.title}</h2>
       <p className={g.panelBody}>{it.body}</p>
       <ol className={g.steps}>
@@ -459,8 +464,8 @@ function RunPanel({ index, onClose, onNext }: { index: number; onClose: () => vo
       </ol>
       <p className={g.panelResult} style={{ "--d": it.workflow.length } as CSSProperties}>{it.result}</p>
       <div className={g.panelActions}>
-        <button type="button" className={g.panelBtn} onClick={onClose}>← Back</button>
-        <button type="button" className={g.panelBtn} onClick={onNext}>Next module →</button>
+        <button type="button" className={g.panelBtn} onClick={onClose}>{hero.back}</button>
+        <button type="button" className={g.panelBtn} onClick={onNext}>{hero.next}</button>
       </div>
     </div>
   );

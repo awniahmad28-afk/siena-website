@@ -1,21 +1,23 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { asset } from "@/lib/asset";
-import { WHY } from "@/content/site";
+import { useContent } from "@/components/LocaleProvider";
 
-const NODES = ["Finance", "Sales", "Service", "Operations", "Marketing", "Data", "Automation", "AI"];
+const NODE_COUNT = 8;
 const C = { x: 400, y: 210 };
 /* without SIENA: tools scattered, a few brittle point-to-point links */
 const LOOSE = [[90, 70], [300, 40], [560, 80], [720, 150], [640, 330], [400, 370], [150, 300], [250, 190]];
 const BROKEN = [[0, 7], [1, 2], [3, 4], [5, 6], [2, 7]];
 /* with SIENA: every tool on one ring around the core */
-const RING = NODES.map((_, i) => {
-  const a = (i / NODES.length) * Math.PI * 2 - Math.PI / 2;
+const RING = Array.from({ length: NODE_COUNT }, (_, i) => {
+  const a = (i / NODE_COUNT) * Math.PI * 2 - Math.PI / 2;
   return [C.x + Math.cos(a) * 300, C.y + Math.sin(a) * 160];
 });
 
 /** "Why SIENA": a short introduction and the four principles as text, then the Without / With SIENA comparison. */
 export function FluxWhy({ s }: { s: Record<string, string> }) {
+  const { why: WHY, ui } = useContent();
+  const t = ui.why;
   const [on, setOn] = useState(false);
   const touched = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -53,12 +55,12 @@ export function FluxWhy({ s }: { s: Record<string, string> }) {
       </ol>
 
       <div className={s.compare} ref={ref} data-on={on || undefined}>
-        <div className={s.switch} role="group" aria-label="Compare">
-          <button type="button" aria-pressed={!on} onClick={() => pick(false)}>Without SIENA</button>
-          <button type="button" aria-pressed={on} onClick={() => pick(true)}>With SIENA</button>
+        <div className={s.switch} role="group" aria-label={t.compare}>
+          <button type="button" aria-pressed={!on} onClick={() => pick(false)}>{t.without}</button>
+          <button type="button" aria-pressed={on} onClick={() => pick(true)}>{t.with}</button>
         </div>
         <svg viewBox="0 0 800 420" className={s.compareSvg} role="img"
-          aria-label={on ? "With SIENA: every tool connected to one intelligent core." : "Without SIENA: isolated tools with brittle, manual links."}>
+          aria-label={on ? t.ariaOn : t.ariaOff}>
           <g className={s.broken}>
             {BROKEN.map(([a, b]) => (
               <line key={`${a}-${b}`} x1={LOOSE[a][0]} y1={LOOSE[a][1]} x2={LOOSE[b][0]} y2={LOOSE[b][1]} />
@@ -72,7 +74,7 @@ export function FluxWhy({ s }: { s: Record<string, string> }) {
             <circle cx={C.x} cy={C.y} r="46" />
             <image href={asset("/brand/siena-symbol-160.webp")} x={C.x - 30} y={C.y - 30} width="60" height="60" />
           </g>
-          {NODES.map((n, i) => {
+          {t.nodes.map((n, i) => {
             const [x, y] = on ? RING[i] : LOOSE[i];
             return (
               <g key={n} className={s.tool} style={{ transform: `translate(${x}px, ${y}px)`, "--i": i } as CSSProperties}>
@@ -83,7 +85,7 @@ export function FluxWhy({ s }: { s: Record<string, string> }) {
           })}
         </svg>
         <p className={s.compareCaption} aria-live="polite">
-          {on ? "One system: every tool shares context through SIENA." : "Isolated tools: manual handoffs, double entry, no shared context."}
+          {on ? t.captionOn : t.captionOff}
         </p>
       </div>
 

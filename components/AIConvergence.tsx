@@ -4,7 +4,10 @@
  * the thread traces the SIENA symbol, and the OFFICIAL logo asset resolves exactly on top of the trace.
  */
 import { AI_NODES, LOCKUP, SIENA_BLADE_LOWER, SIENA_BLADE_UPPER, SYMBOL } from "@/lib/geometry";
-import { AI_SYSTEMS } from "@/content/eras";
+import { useContent } from "@/components/LocaleProvider";
+
+/* the six services around the S, in AI_NODES order (top-left, top-right, right, bottom-right, bottom-left, left) */
+const AI_ORDER = ["apps", "websites", "agents", "systems", "marketing", "automation"];
 import { NodePill } from "./SystemNodes";
 import { asset } from "@/lib/asset";
 
@@ -32,6 +35,8 @@ const S_ANCHORS: [number, number][] = [
 ];
 
 export function AIConvergence() {
+  const { services } = useContent();
+  const AI_SYSTEMS = AI_ORDER.map((id) => services.find((s) => s.id === id)?.title ?? id);
   const { cx, cy } = SYMBOL;
   return (
     <g data-ai>

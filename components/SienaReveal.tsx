@@ -5,7 +5,7 @@
  * → SIENA SOLUTIONS → CTAs.
  */
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { REVEAL, SERVICES } from "@/content/site";
+import { useContent } from "@/components/LocaleProvider";
 import { registerGsap, gsap, ScrollTrigger } from "@/lib/gsap";
 import { CINEMATIC_QUERY } from "@/lib/mode";
 import { BrandLogo } from "./BrandLogo";
@@ -18,6 +18,7 @@ const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : use
 /** opening: used as the first section of the page — starts on the symbol and the first line, with a scroll cue. */
 /** story: the ending of the full-screen Evolution story — one primary CTA into Solutions, a quieter secondary link. */
 export function SienaReveal({ opening = false, scroller, story = false }: { opening?: boolean; scroller?: HTMLElement | null; story?: boolean }) {
+  const { reveal: REVEAL, services: SERVICES, ui } = useContent();
   const ref = useRef<HTMLElement>(null);
 
   useIsoLayoutEffect(() => {
@@ -122,7 +123,7 @@ export function SienaReveal({ opening = false, scroller, story = false }: { open
           </div>
           {opening && (
             <div className="hero-cue reveal-cue" data-cue aria-hidden="true">
-              <span>Scroll</span>
+              <span>{ui.story.scroll}</span>
               <span className="hero-cue-line" />
             </div>
           )}

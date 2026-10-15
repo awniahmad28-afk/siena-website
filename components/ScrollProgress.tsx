@@ -1,14 +1,15 @@
 "use client";
 /** ScrollProgress — the time machine's dial: live year readout + keyboard-navigable era rail. */
-import { ERAS } from "@/content/eras";
+import { useContent } from "@/components/LocaleProvider";
 
 export function ScrollProgress({ onJump }: { onJump: (index: number) => void }) {
+  const { eras: ERAS, ui } = useContent();
   return (
-    <nav className="progress" aria-label="Eras">
+    <nav className="progress" aria-label={ui.story.eras}>
       <p className="progress-year" aria-hidden="true">
-        <span data-year>c. 762</span>
-        <span className="progress-era" data-year-suffix>
-          CE
+        <span data-year data-circa={ui.story.circa}>{ui.story.circa} 762</span>
+        <span className="progress-era" data-year-suffix data-ce={ui.story.ce}>
+          {ui.story.ce}
         </span>
       </p>
       <div className="progress-rail">

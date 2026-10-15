@@ -1,6 +1,7 @@
 import "@fontsource-variable/jetbrains-mono/wght.css";
 import type { ReactNode } from "react";
-import { HERO, WHAT } from "@/content/site";
+import { getContent } from "@/content/index";
+import type { Locale } from "@/lib/i18n";
 import { Genesis, type CursorStyle, type GenesisPalette } from "@/components/genesis/Genesis";
 import { Spotlight } from "@/components/genesis/Spotlight";
 import { FluxHeader } from "@/components/flux/FluxHeader";
@@ -28,7 +29,9 @@ const PALETTE: GenesisPalette = {
  * The Genesis Flux homepage. `solutions` replaces the solutions section (used by design previews);
  * by default it is the Tide wheel (SolutionsTide). `core` is the visual after the About text (logo-interlude previews); by default it is the Light Sweep. Keep the section id "solutions" so the header and footer links work.
  */
-export function FluxHome({ solutions, core, cursor = "glow", evo = "ring" }: { solutions?: ReactNode; core?: ReactNode; cursor?: CursorStyle; evo?: EvoVariant }) {
+export function FluxHome({ locale = "en", solutions, core, cursor = "glow", evo = "ring" }: { locale?: Locale; solutions?: ReactNode; core?: ReactNode; cursor?: CursorStyle; evo?: EvoVariant }) {
+  const c = getContent(locale);
+  const h = c.ui.hero;
   return (
     <div className={s.page}>
       <SmoothScroll />
@@ -45,7 +48,7 @@ export function FluxHome({ solutions, core, cursor = "glow", evo = "ring" }: { s
           coords={false}
           cursor={cursor}
           corner={<EvolutionLink variant={evo} />}
-          stages={["Signals", "Connections", "Pattern", "Intelligence"]}
+          stages={h.stages}
           backdrop={
             <div className={s.backdrop} aria-hidden="true">
               <div className={s.haze} />
@@ -54,35 +57,35 @@ export function FluxHome({ solutions, core, cursor = "glow", evo = "ring" }: { s
           }
           intro={
             <>
-              <p className={s.kicker}>[ {HERO.eyebrow} ]</p>
+              <p className={s.kicker}>[ {c.heroEyebrow} ]</p>
               <h1 className={s.h1}>
-                <span className={s.glitch} data-text="Intelligence,">Intelligence,</span><br />
-                <em>assembling.</em>
+                <span className={s.glitch} data-text={h.titleA}>{h.titleA}</span><br />
+                <em>{h.titleB}</em>
               </h1>
-              <p className={s.cue}>Scroll to initialise <span aria-hidden="true">↓</span></p>
+              <p className={s.cue}>{h.cue} <span aria-hidden="true">↓</span></p>
             </>
           }
           outro={
             <>
-              <p className={s.kicker}>[ System online ]</p>
-              <h2 className={s.outroTitle}>From scattered data <em>to one intelligence.</em></h2>
-              <p className={s.lead}>{WHAT.headline}</p>
+              <p className={s.kicker}>[ {h.outroKicker} ]</p>
+              <h2 className={s.outroTitle}>{h.outroA} <em>{h.outroB}</em></h2>
+              <p className={s.lead}>{c.whatHeadline}</p>
               <div className={s.ctas}>
-                <a href="#contact" className={s.btn} data-magnet="">Start your project</a>
-                <a href="#solutions" className={s.btnGhost}>Explore solutions</a>
+                <a href="#contact" className={s.btn} data-magnet="">{c.ui.startProject}</a>
+                <a href="#solutions" className={s.btnGhost}>{h.explore}</a>
               </div>
             </>
           }
         />
 
-        <FluxWhat s={s} core={core ?? <LogoInterlude variant="sweep" />} />
+        <FluxWhat s={s} locale={locale} core={core ?? <LogoInterlude variant="sweep" />} />
 
         {solutions ?? <SolutionsTide />}
 
         <FluxWhy s={s} />
         <FluxContact s={s} />
       </main>
-      <FluxFooter s={s} />
+      <FluxFooter s={s} locale={locale} />
     </div>
   );
 }

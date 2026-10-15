@@ -32,6 +32,15 @@ All copy comes from `content/site.ts`.
 
 "Experience the Evolution" (any `#evolution` link) opens the full-screen Evolution story on top of the homepage (`components/StoryLayer.tsx`); its ending shows the logo and the six services.  
 
+## Languages (English, Arabic, Kurdish)
+
+The site is in three languages: English at `/`, Arabic at `/ar/` and Kurdish (Sorani) at `/ku/` (also `/ar/work/`, `/ku/privacy/` and so on). Arabic and Kurdish pages run right-to-left. A language button in the header (and in the phone menu) switches between them and keeps the section you are on.
+
+- **English text** stays where it was: `content/site.ts`, `content/work.ts`, `content/eras.ts`, plus menus, buttons and form labels in `content/ui.ts`.
+- **Arabic and Kurdish text**: `content/locales/ar.ts` and `content/locales/ku.ts` (same structure as the English). Our Work picture captions: `content/locales/captions.ts`.
+- When you change English text, change the same item in both translation files too.
+- After `next build`, `scripts/localize-html.mjs` marks the `/ar/` and `/ku/` pages with their language and right-to-left direction (part of `npm run build`).
+
 ## Our Work page (`/work`)
 
 One tab per service. Pictures and videos come straight from folders, with no code to edit:
