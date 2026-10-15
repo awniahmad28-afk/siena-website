@@ -24,7 +24,8 @@ export function WorkPage({ locale }: { locale: Locale }) {
             <h1 className={w.title}>{work.headline}</h1>
             <p className={w.intro}>{work.intro}</p>
           </header>
-          <WorkGallery categories={getWork(locale)} empty={work.empty} />
+          {/* only services that already have projects get a tab; a service appears by itself once its folder has work in it */}
+          <WorkGallery categories={getWork(locale).filter((c) => c.projects.length + c.items.length > 0)} empty={work.empty} />
         </main>
         <FluxFooter s={s} page="work" locale={locale} />
       </div>

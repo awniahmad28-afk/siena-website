@@ -43,7 +43,7 @@ The site is in three languages: English at `/`, Arabic at `/ar/` and Kurdish (So
 
 ## Our Work page (`/work`)
 
-One tab per service. Pictures and videos come straight from folders, with no code to edit:
+One tab per service that has work in it (a service with an empty folder is hidden, and its tab appears as soon as you add a project). Pictures and videos come straight from folders, with no code to edit:
 
 `public/work/apps/` · `websites/` · `agents/` · `automation/` · `systems/` · `marketing/`
 
