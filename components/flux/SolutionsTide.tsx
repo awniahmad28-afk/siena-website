@@ -40,10 +40,11 @@ export function SolutionsTide() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  /* if the reader is further down the previous article, bring them to the top of the new one */
+  /* if the reader is further down the previous article (its start is hidden above the header), bring them back to the
+     top of the new one; while the start of the article is still on screen, the page stays where it is */
   const toArticleTop = () => {
-    const top = section.current?.getBoundingClientRect().top ?? 0;
-    if (top < -40) section.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const top = document.getElementById("tide-article")?.getBoundingClientRect().top ?? 0;
+    if (top < 72) section.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   /* choose a solution (click, keys, Next) */

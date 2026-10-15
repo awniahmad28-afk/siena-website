@@ -70,6 +70,9 @@
   .hintMob { display: inline; }
 }
 
+/* touch screens of any size (e.g. a tablet held sideways) are swiped, not scrolled */
+@media (hover: none) { .hintDesk { display: none; } .hintMob { display: inline; } }
+
 @media (prefers-reduced-motion: reduce) {
   .water span, .wheel::before, .article { animation: none !important; }
 }
