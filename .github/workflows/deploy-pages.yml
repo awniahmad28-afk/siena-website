@@ -26,9 +26,9 @@ jobs:
       - run: npm ci
       - name: Build static site
         run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-          # add  SIENA_PLATES: "off"  here to publish the first (illustrated) version instead
+        # the site lives at the root of siena-solutions.com, so no base path (it was /siena-website on github.io)
+        # env:
+        #   SIENA_PLATES: "off"   # publish the first (illustrated) version of the story instead
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

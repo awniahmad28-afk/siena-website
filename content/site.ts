@@ -3,7 +3,7 @@
 export const SITE = {
   name: "SIENA",
   tagline: "Solutions",
-  url: "https://example.com", // TODO: replace with the production domain
+  url: "https://siena-solutions.com",
   description:
     "SIENA Solutions designs and builds apps, websites, AI agents, automation, business systems and marketing for growing businesses.",
   /** enquiry address (contact section, footer, enquiry form) */

@@ -12,5 +12,5 @@ export const LOCALES: Record<Locale, { label: string; short: string; lang: strin
 
 export const LOCALE_LIST: Locale[] = ["en", "ar", "ku"];
 
-/** a page path in a given language, with the site's base path: href("ar", "/work/") → "/siena-website/ar/work/" */
+/** a page path in a given language, with the site's base path: href("ar", "/work/") → "/ar/work/" */
 export const href = (locale: Locale, path = "/") => asset(`${LOCALES[locale].prefix}${path}`);
