@@ -1,11 +1,12 @@
 /* language switcher — header button + list, and the inline row in the phone menu */
 .root { position: relative; }
 .btn {
-  display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 12px; cursor: pointer;
-  background: rgba(51, 225, 255, 0.05); border: 1px solid var(--line); color: var(--ink);
-  font: 500 0.72rem/1 var(--mono); letter-spacing: 0.12em; transition: border-color 0.2s, background 0.2s;
+  display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 6px; cursor: pointer;
+  background: none; border: 0; color: var(--ink);
+  font: 500 0.72rem/1 var(--mono); letter-spacing: 0.12em; transition: color 0.2s, opacity 0.2s;
 }
-.btn:hover, .btn[aria-expanded="true"] { border-color: var(--cyan); background: rgba(51, 225, 255, 0.12); }
+.btn:hover, .btn[aria-expanded="true"] { color: var(--cyan); }
+.btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 6px; }
 .btn svg { width: 16px; height: 16px; fill: none; stroke: var(--cyan); stroke-width: 1.6; }
 .btn span:lang(ar), .btn span:lang(ckb) { font-family: var(--arabic); font-size: 0.95rem; letter-spacing: 0; }
 .list {
