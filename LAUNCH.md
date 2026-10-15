@@ -13,7 +13,7 @@ Things to do when the website goes live on the real domain. Tick them off as the
 - [ ] Add the social media links (`SITE.social`) — after launch.
 - [ ] Check https://siena-solutions.com/sitemap.xml and /robots.txt show the real domain (they follow `SITE.url` automatically).
 - [x] Domain verified in Google Search Console.
-- [ ] Submit `sitemap.xml` in Search Console (Sitemaps → `sitemap.xml` → Submit) once the site is live on the domain.
+- [x] Submit `sitemap.xml` in Search Console (Sitemaps → `sitemap.xml` → Submit) once the site is live on the domain.
 - [ ] Send one test enquiry through the contact form on the live domain and check it arrives at contact@siena-solutions.com (the form uses FormSubmit; it is already activated).
 
 ## Email: stop replies landing in customers' spam
@@ -22,5 +22,5 @@ In the domain's DNS settings (where the domain was bought), add:
 - [x] **SPF**: TXT record, value given by the email provider.
 - [x] **DKIM**: TXT/CNAME record, generated in the email provider's admin panel ("Authenticate email" / "DKIM").
 - [x] **DMARC**: TXT record, host `_dmarc`, value `v=DMARC1; p=none; rua=mailto:contact@siena-solutions.com`
-- [ ] Wait a few hours (up to 48), then test at mail-tester.com: send an email to the address it shows and aim for 9/10 or more.
+- [x] Tested: Gmail "Show original" shows SPF, DKIM and DMARC all PASS (Oct 15, 2026). Optional extra check: mail-tester.com: send an email to the address it shows and aim for 9/10 or more.
 - [ ] For the first weeks: ask early customers to mark the email "not spam" and reply to it; keep replies plain (few links/images).
