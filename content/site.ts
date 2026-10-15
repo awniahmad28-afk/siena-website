@@ -45,10 +45,10 @@ export const REVEAL = {
   support: "The next evolution of business systems.",
   ctas: [
     { label: "Explore Our Solutions", href: "#solutions", variant: "primary" as const },
-    { label: "Build Your AI System", href: "#contact", variant: "ghost" as const },
+    { label: "Start Your Project", href: "#contact", variant: "ghost" as const },
   ],
   /** ending of the full-screen Evolution story */
-  storyCta: { label: "Build Your AI System", href: "#contact" },
+  storyCta: { label: "Start Your Project", href: "#contact" },
   storySecondary: { label: "Explore our solutions", href: "#solutions" },
 };
 
@@ -209,7 +209,7 @@ export const SOLUTIONS = {
     workflow: "How it works",
     uses: "Where it helps",
     outcome: "Outcome",
-    cta: "Build Your AI System",
+    cta: "Start Your Project",
   },
 } as const;
 
@@ -324,7 +324,7 @@ export const MARKETING = {
 export const SERVICES = [APPS, WEBSITES, AGENTS, AUTOMATE, SYSTEMS, MARKETING];
 
 export const CONTACT = {
-  eyebrow: "Build your AI system",
+  eyebrow: "Start your project",
   headline: "Let’s design the next evolution of your business.",
   body: "Tell us where your systems feel fragmented. We’ll map how SIENA can connect them into one intelligent flow.",
   cta: "Start the conversation",

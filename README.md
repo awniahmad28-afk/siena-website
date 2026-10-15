@@ -30,7 +30,7 @@ The homepage (`app/page.tsx`) is **Genesis Flux**: scrolling builds the SIENA sy
 
 All copy comes from `content/site.ts`.
 
-"Experience the Evolution" (any `#evolution` link, and `/story`) opens the full-screen Evolution story on top of the homepage (`components/StoryLayer.tsx`); its ending shows the logo and the six services.  
+"Experience the Evolution" (any `#evolution` link) opens the full-screen Evolution story on top of the homepage (`components/StoryLayer.tsx`); its ending shows the logo and the six services.  
 
 ## Our Work page (`/work`)
 
@@ -53,15 +53,15 @@ Each **sub-folder is a project** (e.g. `public/work/websites/dolce-aesthetic-cli
 | The thread shapes and SIENA symbol trace | `lib/geometry.ts` |
 | Design tokens and layout | `app/globals.css` |
 
-**Before launch:** set `SITE.url` and `SITE.contactEmail` in `content/site.ts` (placeholders are `example.com`).
+**Before launch:** follow [LAUNCH.md](LAUNCH.md).
 
 ## Brand assets
 
-`brand/SIENA logo.JPG` is the single source of truth. `npm run assets` crops it, turns its dark background into transparency and writes AVIF/WebP files to `public/brand/`. The mark and wordmark are never redrawn. If you get a vector or transparent master, replace the file and run the script again.
+`brand/SIENA logo - Solutions.png` is the single source of truth. `npm run assets` crops it, turns its dark background into transparency and writes AVIF/WebP files to `public/brand/`. The mark and wordmark are never redrawn. If you get a vector or transparent master, replace the file and run the script again.
 
 ## Modes
 
 - **Cinematic** (≥ 900 px wide, motion allowed): a sticky stage with one scroll-scrubbed GSAP timeline.
 - **Chronicle** (mobile, portrait tablet, `prefers-reduced-motion`, or no JavaScript): the same eras as a linear story with static vignettes.
 
-See `docs/ARCHITECTURE.md` for the full architecture.
+`docs/ARCHITECTURE.md` is the original v1 plan, kept for reference; the sections above describe the site as it is now.

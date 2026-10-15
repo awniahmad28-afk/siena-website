@@ -2,6 +2,7 @@
 import { useState, type FormEvent } from "react";
 import { CONTACT, SERVICES, SITE } from "@/content/site";
 import { CopyEmail } from "./CopyEmail";
+import { asset } from "@/lib/asset";
 
 /** Terminal-style enquiry. The site is static, so it opens a pre-filled email in the visitor's mail app. */
 export function FluxContact({ s }: { s: Record<string, string> }) {
@@ -53,7 +54,7 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
       form.reset(); setAreas([]);
     } catch {
       setLog((x) => [...x, "> couldn’t send from here — opening your email app instead…"]);
-      const subj = `Build your AI system${company ? ` — ${company}` : ""}`;
+      const subj = `New project enquiry${company ? ` — ${company}` : ""}`;
       window.setTimeout(() => {
         window.location.href = `mailto:${SITE.contactEmail}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(lines.join("\n"))}`;
       }, 600);
@@ -106,7 +107,7 @@ export function FluxContact({ s }: { s: Record<string, string> }) {
           {error && <p className={s.error} role="alert">{error}</p>}
           <div className={s.termFoot}>
             <button type="submit" className={s.btn} data-magnet="" disabled={sending} aria-busy={sending}>{sending ? "Sending…" : `${CONTACT.cta} →`}</button>
-            <p className={s.termNote}>Goes straight to our team. We reply by email.</p>
+            <p className={s.termNote}>Goes straight to our team. We only use your details to reply. <a href={asset("/privacy/")}>Privacy</a></p>
           </div>
           {log.length > 0 && <pre className={s.log} aria-live="polite">{log.join("\n")}</pre>}
         </div>

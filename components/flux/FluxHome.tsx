@@ -68,7 +68,7 @@ export function FluxHome({ solutions, core, cursor = "glow", evo = "ring" }: { s
               <h2 className={s.outroTitle}>From scattered data <em>to one intelligence.</em></h2>
               <p className={s.lead}>{WHAT.headline}</p>
               <div className={s.ctas}>
-                <a href="#contact" className={s.btn} data-magnet="">Build your AI system</a>
+                <a href="#contact" className={s.btn} data-magnet="">Start your project</a>
                 <a href="#solutions" className={s.btnGhost}>Explore solutions</a>
               </div>
             </>

@@ -12,7 +12,7 @@ const ICONS: Record<string, { label: string; d: string }> = {
 };
 
 /** Footer: the logo reveal, then Company, Services and Contact (email, WhatsApp, location and social links when set). */
-export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "work" }) {
+export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "work" | "other" }) {
   const home = page ? asset("/") : "";
   const digits = SITE.phone.replace(/\D/g, "");
   const social = Object.entries(SITE.social).filter(([, url]) => url);
@@ -59,7 +59,10 @@ export function FluxFooter({ s, page }: { s: Record<string, string>; page?: "wor
       </div>
       <div className={s.footBar}>
         <span>© {new Date().getFullYear()} {SITE.name} {SITE.tagline}</span>
-        <a href="#top">Back to top ↑</a>
+        <span className={s.footBarLinks}>
+          <a href={asset("/privacy/")}>Privacy</a>
+          <a href="#top">Back to top ↑</a>
+        </span>
       </div>
     </footer>
   );

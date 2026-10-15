@@ -1,6 +1,8 @@
 # SIENA — The Evolution of Business Systems
 ### Homepage architecture · v1
 
+> **Historical document.** This is the original plan. The live site has changed since (Genesis hero, Solutions wheel, Our Work page, Evolution story as an overlay); see the README for how it works today.
+
 > **ONE DESK. ONE BUSINESS. CENTURIES OF EVOLUTION.**
 > Final statement: **FROM PAPER. TO SOFTWARE. TO INTELLIGENCE.** — SIENA SOLUTIONS
 

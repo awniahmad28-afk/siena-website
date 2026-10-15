@@ -8,6 +8,8 @@ Things to do when the website goes live on the real domain. Tick them off as the
 - [ ] Add the custom domain again in GitHub → Settings → Pages, with DNS pointing to GitHub Pages, and turn on "Enforce HTTPS".
 - [ ] Add the location (`SITE.location`) and the Google Maps link once the Google Business Profile is verified.
 - [ ] Add the social media links (`SITE.social`).
+- [ ] Check https://siena-solutions.com/sitemap.xml and /robots.txt show the real domain (they follow `SITE.url` automatically).
+- [ ] Add the site to Google Search Console (search.google.com/search-console), verify the domain, and submit `sitemap.xml`.
 - [ ] Send one test enquiry through the contact form on the live domain and check it arrives at contact@siena-solutions.com (the form uses FormSubmit; it is already activated).
 
 ## Email: stop replies landing in customers' spam

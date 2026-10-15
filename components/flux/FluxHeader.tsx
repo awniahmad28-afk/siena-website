@@ -14,7 +14,7 @@ const LINKS = [
 
 /** Fixed HUD header: highlights the section in view; full-screen menu on small screens.
  *  `page` is set on pages other than the homepage: section links then lead back to the homepage. */
-export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "work" }) {
+export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "work" | "other" }) {
   const home = page ? asset("/") : "";
   const href = (l: (typeof LINKS)[number]) => ("page" in l && l.page ? asset(l.page) : `${home}#${l.id}`);
   const current = (l: (typeof LINKS)[number]) => (page === l.id ? "page" : active === l.id ? "location" : undefined);
@@ -67,7 +67,7 @@ export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "wor
           <a key={l.id} href={href(l)} aria-current={current(l)}>{l.label}</a>
         ))}
       </nav>
-      <a href={`${home}#contact`} className={s.topCta} aria-current={active === "contact" ? "location" : undefined}>Build your AI system</a>
+      <a href={`${home}#contact`} className={s.topCta} aria-current={active === "contact" ? "location" : undefined}>Start your project</a>
       <button
         ref={toggle}
         type="button"
@@ -91,7 +91,7 @@ export function FluxHeader({ s, page }: { s: Record<string, string>; page?: "wor
             </li>
           ))}
         </ul>
-        <a href={`${home}#contact`} className={s.btn} onClick={() => setOpen(false)}>Build your AI system</a>
+        <a href={`${home}#contact`} className={s.btn} onClick={() => setOpen(false)}>Start your project</a>
         <button type="button" className={s.menuClose} onClick={() => setOpen(false)}>Close ✕</button>
       </div>
     </header>

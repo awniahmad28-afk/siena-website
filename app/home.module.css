@@ -473,3 +473,18 @@ line.pipeWire { stroke: rgba(51, 225, 255, 0.45); }
   .mailLink { display: inline; }
   .mailText, .copyBtn { display: none; }
 }
+
+/* 404 page */
+.notFound { min-height: 100svh; display: grid; align-content: center; gap: 22px; padding: 120px var(--gutter) 80px; max-width: 980px; }
+
+/* privacy page */
+.legal { max-width: 760px; padding: clamp(120px, 18vh, 170px) var(--gutter) 40px; margin: 0 auto; }
+.legalTitle { margin: 14px 0 0; font: 600 clamp(2.2rem, 5vw, 3.6rem)/1 var(--display); letter-spacing: -0.035em; color: var(--ink); }
+.legalDate { margin: 14px 0 0; font: 500 0.72rem/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.legal h2 { margin: 40px 0 0; font: 600 1.25rem/1.2 var(--display); color: var(--ink); }
+.legal p { margin: 12px 0 0; color: #b9c4d8; line-height: 1.8; }
+.legal a { color: var(--cyan) !important; }
+.footBarLinks { display: inline-flex; gap: 22px; }
+.termNote a { color: var(--cyan); }
+/* 404: keep the explanation and left-aligned buttons on phones (the hero's phone rules hide/centre them) */
+@media (max-width: 899px) { .notFound .lead { display: block; } .notFound .ctas { justify-content: flex-start; } }
