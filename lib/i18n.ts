@@ -5,9 +5,9 @@ export type Locale = "en" | "ar" | "ku";
 
 export const LOCALES: Record<Locale, { label: string; short: string; lang: string; dir: "ltr" | "rtl"; prefix: string }> = {
   en: { label: "English", short: "EN", lang: "en", dir: "ltr", prefix: "" },
-  ar: { label: "العربية", short: "ع", lang: "ar", dir: "rtl", prefix: "/ar" },
+  ar: { label: "العربية", short: "AR", lang: "ar", dir: "rtl", prefix: "/ar" },
   /* Kurdish (Sorani / Central Kurdish), written in Arabic script */
-  ku: { label: "کوردی", short: "کو", lang: "ckb", dir: "rtl", prefix: "/ku" },
+  ku: { label: "کوردی", short: "KU", lang: "ckb", dir: "rtl", prefix: "/ku" },
 };
 
 export const LOCALE_LIST: Locale[] = ["en", "ar", "ku"];

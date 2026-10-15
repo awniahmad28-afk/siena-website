@@ -8,7 +8,6 @@
 .btn:hover, .btn[aria-expanded="true"] { color: var(--cyan); }
 .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 6px; }
 .btn svg { width: 16px; height: 16px; fill: none; stroke: var(--cyan); stroke-width: 1.6; }
-.btn span:lang(ar), .btn span:lang(ckb) { font-family: var(--arabic); font-size: 0.95rem; letter-spacing: 0; }
 .list {
   position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 5; display: grid; min-width: 150px; padding: 6px;
   background: rgba(5, 9, 20, 0.97); border: 1px solid var(--line); box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.8);

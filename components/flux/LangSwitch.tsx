@@ -50,7 +50,7 @@ export function LangSwitch({ path, inline = false }: { path: string; inline?: bo
     <div ref={root} className={l.root}>
       <button type="button" className={l.btn} aria-expanded={open} aria-haspopup="true" aria-label={`${ui.language}: ${LOCALES[locale].label}`} onClick={() => setOpen((o) => !o)}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3Z" /></svg>
-        <span lang={LOCALES[locale].lang}>{LOCALES[locale].short}</span>
+        <span>{LOCALES[locale].short}</span>
       </button>
       {open && <div className={l.list}>{links}</div>}
     </div>
