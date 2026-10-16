@@ -75,6 +75,18 @@ export function Genesis({
 
   const [hover, setHover] = useState<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
+  /* open a module's panel; if the reader has scrolled past the hero, glide back to where the finished hero fills the
+     screen first, so the panel never runs out of view */
+  const openModule = (i: number | null) => {
+    setOpen(i);
+    if (i === null || !track.current) return;
+    const end = window.scrollY + track.current.getBoundingClientRect().bottom - window.innerHeight;
+    if (window.scrollY > end + 4) {
+      const lenis = (window as unknown as { sienaLenis?: { scrollTo: (y: number, o?: object) => void } }).sienaLenis;
+      if (lenis) lenis.scrollTo(end, { duration: 0.9 });
+      else window.scrollTo({ top: end, behavior: "smooth" });
+    }
+  };
   hoverRef.current = hover;
   openRef.current = open;
 
@@ -421,7 +433,7 @@ export function Genesis({
               onMouseLeave={() => setHover(null)}
               onFocus={() => setHover(i)}
               onBlur={() => setHover(null)}
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => openModule(open === i ? null : i)}
             >
               <span className={g.chipDot} />{it.title}
             </button>
@@ -435,7 +447,7 @@ export function Genesis({
               <p className={g.outroHint}><span className={g.hintDesk}>{hero.hintDesk}</span><span className={g.hintMob}>{hero.hintMob}</span></p>
               <div className={g.chipRow}>
                 {ITEMS_T.map((it, i) => (
-                  <button key={it.id} type="button" className={g.chip} onClick={() => setOpen(i)}>
+                  <button key={it.id} type="button" className={g.chip} onClick={() => openModule(i)}>
                     <span className={g.chipDot} />{it.title}
                   </button>
                 ))}

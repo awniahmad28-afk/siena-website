@@ -13,6 +13,8 @@ export function SmoothScroll() {
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+    /* other components (e.g. the hero's module panel) can glide the page with the same smooth scroll */
+    (window as unknown as { sienaLenis?: Lenis }).sienaLenis = lenis;
     let raf = requestAnimationFrame(function tick(t) { lenis.raf(t); raf = requestAnimationFrame(tick); });
     const html = document.documentElement;
     const mo = new MutationObserver(() => (html.classList.contains("story-open") ? lenis.stop() : lenis.start()));
@@ -20,7 +22,7 @@ export function SmoothScroll() {
     /* page restored from the browser's back/forward cache: make sure scrolling is running again */
     const onShow = (e: PageTransitionEvent) => { if (e.persisted && !html.classList.contains("story-open")) lenis.start(); };
     window.addEventListener("pageshow", onShow);
-    return () => { cancelAnimationFrame(raf); mo.disconnect(); window.removeEventListener("pageshow", onShow); lenis.destroy(); };
+    return () => { cancelAnimationFrame(raf); mo.disconnect(); window.removeEventListener("pageshow", onShow); lenis.destroy(); delete (window as unknown as { sienaLenis?: Lenis }).sienaLenis; };
   }, []);
   return null;
 }
